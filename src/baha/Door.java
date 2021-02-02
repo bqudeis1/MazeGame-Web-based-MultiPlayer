@@ -11,9 +11,7 @@ public class Door implements MapSite {
         room1=r1;
         room2=r2;
     }
-    public void enter(){
 
-    }
 
     private boolean isClosed() {
         return isClosed;

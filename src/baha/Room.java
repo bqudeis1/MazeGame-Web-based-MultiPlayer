@@ -3,6 +3,11 @@ package baha;
 public class Room implements MapSite {
     private boolean dark;
     private boolean switchLightExists;
+    private final int roomNo;
+    public Room(int roomNo){
+        this.roomNo=roomNo;
+
+    }
 
     public boolean isDark() {
         return dark;
