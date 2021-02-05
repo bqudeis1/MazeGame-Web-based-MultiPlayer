@@ -1,56 +1,57 @@
 package baha;
 
-
-
 public class Room implements MapSite {
-    private boolean dark;
-    private boolean switchLightExists;
-    private final int roomNo;
-    int playerDirction=0;
+  private final int roomNo;
+  int playerDirction = 0;
+  private boolean dark;
+  private boolean switchLightExists;
+  private final MapSite[] mapSites = new MapSite[5];
 
+  public Room(int roomNo) {
+    this.roomNo = roomNo;
+  }
 
-    private MapSite[] mapSites= new MapSite[5];
-    public Room(int roomNo){
-        this.roomNo=roomNo;
+  public boolean isDark() {
+    return dark;
+  }
 
-    }
+  public void setDark(boolean dark) {
+    this.dark = dark;
+  }
 
+  public boolean isSwitchLightExists() {
+    return switchLightExists;
+  }
 
-    public boolean isDark() {
-        return dark;
-    }
-    public void setDark(boolean dark) {
-        this.dark = dark;
-    }
-    public boolean isSwitchLightExists() {
-        return switchLightExists;
-    }
-    public void setSwitchLightExists(boolean switchLightExists) {
-        this.switchLightExists = switchLightExists;
-    }
-    public void turnLightOn(){if (isSwitchLightExists()) setDark(false);}
-    public void turnLightOff(){if (isSwitchLightExists()) setDark(true);}
+  public void setSwitchLightExists(boolean switchLightExists) {
+    this.switchLightExists = switchLightExists;
+  }
 
-    public int getRoomNo() {
-        return roomNo;
-    }
+  public void turnLightOn() {
+    if (isSwitchLightExists()) setDark(false);
+  }
 
-    public MapSite[] getMapSites() {
-        return mapSites;
-    }
+  public void turnLightOff() {
+    if (isSwitchLightExists()) setDark(true);
+  }
 
-    public void setMapSites(MapSite mapSite,int side) {
-        this.mapSites[side] =mapSite ;
-    }
+  public int getRoomNo() {
+    return roomNo;
+  }
 
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        return null;
-    }
+  public MapSite[] getMapSites() {
+    return mapSites;
+  }
 
-    @Override
-    public void enter(Maze maze) {
+  public void setMapSites(MapSite mapSite, int side) {
+    this.mapSites[side] = mapSite;
+  }
 
-    }
+  @Override
+  public Object clone() throws CloneNotSupportedException {
+    return null;
+  }
 
+  @Override
+  public void enter(Maze maze) {}
 }

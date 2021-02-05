@@ -2,7 +2,7 @@ package timer;
 
 import gameContext.GameStatus;
 
-//singleton
+// singleton
 public class GameTimer {
   private long time;
 
@@ -16,9 +16,8 @@ public class GameTimer {
 
   public void setTime(long time) {
     this.time = time;
-    if(time==0){
+    if (time == 0) {
       GameStatus.GameStatusInstance.setGameFinished(true);
     }
   }
-
 }
