@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="WNA_MazeGame_Online:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>WNA_MazeGame_Online</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="WNA_MazeGame_Online-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="WNA_MazeGame_Online:war exploded" />
+    </root>
+  </artifact>
+</component>
