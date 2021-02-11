@@ -34,6 +34,7 @@ public class MazeGame {
     m.addRoom(r1);
     m.addRoom(r2);
     m.addRoom(r3);
+    m.addStartingRoom(r1);
 
     return m;
   }
@@ -202,10 +203,7 @@ public class MazeGame {
     return new Seller();
   }
   // factory methods ends here.
-  public Maze CreateFirstMapRooms() {
 
-    return new Maze();
-  }
 }
 
 // class

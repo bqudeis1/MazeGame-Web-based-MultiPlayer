@@ -16,7 +16,16 @@ public class Player implements Observer {
   private String name;
   private Direction direction = Direction.east;
   private int currentDirectionAsInt = 0;
+
+  public void setCurrentRoom(Room currentRoom) {
+    this.currentRoom = currentRoom;
+  }
+
   private Room currentRoom;
+
+  public Player(String playerName){
+    name=playerName;
+  }
 
   public void forward() {
     if (currentRoom.getMapSites()[currentDirectionAsInt] instanceof Door

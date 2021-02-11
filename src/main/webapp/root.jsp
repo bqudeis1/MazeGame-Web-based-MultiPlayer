@@ -20,20 +20,35 @@
     </style>
 </head>
 
-
-
-<h1>Root page</h1>
-<embed method="post" action="newGameCreatorServlet">
-    <label>First name:</label><br>
-    <input type="text" name="fName" ><br>
-    <input type="submit" value="Join game">
-    <input type="checkbox" name="newGame"  checked="checked">
-    <label>create new game</label>
+<body>
 <audio controls autoplay hidden="hidden">
-    <source src="media/gameTheme.ogg" type="audio/ogg" >
-    <source src="media/gameTheme.mp3" type="audio/mpeg" >
+    <source src="media/gameTheme.ogg" type="audio/ogg">
+    <source src="media/gameTheme.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
+<h1>Root page</h1>
+
+<form method="post" action="newGameCreatorServlet">
+
+    <label>First name:</label><br>
+    <input type="text" name="name"><br>
+    <br>
+    <input type="radio" id="CreateGame" name="createGame" value="newGame">
+    <label for="CreateGame">Create Game</label>
+
+    <input type="radio" id="FindGame" name="JoinGame" value="FindGame">
+    <label for="FindGame">Find Game</label>
+
+    <input type="radio" id="EnterCode" name="JoinGame" value="EnterCode" onchange="myFunction()">
+    <label for="EnterCode">Enter Code</label>
+    <br>
+    <div id="GameCode" style="display: none">
+        <input type="text" name="GameCode"> <br>
+    </div>
+
+
+    <input type="submit" value="Join game">
 </form>
 </body>
+<script src="rootScript.js"></script>
 </html>

@@ -13,8 +13,8 @@ function ajaxAsyncRequest(reqURL) {
 
     //When readyState is 4 then get the server output
     xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4) {
-            if (xmlhttp.status == 200) {
+        if (xmlhttp.readyState === 4) {
+            if (xmlhttp.status === 200) {
                 document.getElementById("console").innerHTML = xmlhttp.responseText;
                 //alert(xmlhttp.responseText);
             } else {

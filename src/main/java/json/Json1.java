@@ -11,7 +11,7 @@ public class Json1 {
 
     // String JsonString=gson.toJson(maze.getRoomSet().get(1));
 
-    String x = new ObjectMapper().writeValueAsString(maze.getRoomSet().get(1));
+    String x = new ObjectMapper().writeValueAsString(maze.getRoomList().get(1));
 
     return x;
   }
