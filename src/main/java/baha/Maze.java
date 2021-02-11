@@ -1,13 +1,15 @@
 package baha;
 
+import player.Player;
+
 import java.util.*;
 
 public class Maze implements Cloneable, Comparator<Maze> {
+    //TODO builder
     private final GameInfo gameInfo;
     private final List<Room> roomList = new ArrayList<Room>();
     private final HashMap<Room, Boolean> startingRooms = new HashMap();
-    private boolean isGameFull;
-    private Integer numberOfPlayers;
+    private static Set<Integer>gamesIds= new HashSet<>();
 
     public GameInfo getGameInfo() {
         return gameInfo;
@@ -18,14 +20,11 @@ public class Maze implements Cloneable, Comparator<Maze> {
     }
 
     public Maze() {
-        synchronized (this) {
+        synchronized (this) {//TODO:check this synchronization
             gameInfo = new GameInfo();
+            gameInfo.PlayersNumber=0;
+            gameInfo.isGameFull=false;
         }
-//        startingRooms.put(roomList.get(0), false);
-//        startingRooms.put(roomList.get(1), false);
-//        startingRooms.put(roomList.get(19), false);
-//        startingRooms.put(roomList.get(23), false);
-        isGameFull = false;
     }
 
     public List<Room> getRoomList() {
@@ -66,27 +65,41 @@ public class Maze implements Cloneable, Comparator<Maze> {
                 .findFirst().get();
     }
 
-
     @Override
     public int compare(Maze o1, Maze o2) {
         Objects.requireNonNull(o1);
         Objects.requireNonNull(o2);
-        return (o1).numberOfPlayers.compareTo(o2.numberOfPlayers);
+        return o1.gameInfo.PlayersNumber.compareTo(o2.gameInfo.PlayersNumber);
+    }
+
+    public void addPlayer(Player player){
+        Objects.requireNonNull(player);
+        gameInfo.PlayersNumber++;
+        gameInfo.players.add(player);
+    }
+    public void RemovePlayerFromGame(Player player){
+        Objects.requireNonNull(player);
+        gameInfo.players.remove(player);
+        gameInfo.PlayersNumber++;
     }
 
     private class GameInfo {
         private final int mazeId;
-        private int PlayersNumber;
+        private Integer PlayersNumber;
+        private boolean isGameFull;
+        private List<Player>players= new ArrayList<>();
 
-        //list of Players or PlayersId.
         public GameInfo() {
-            mazeId = generateMazeId();
+            mazeId = generateRandomMazeId();
         }
-
-        private synchronized int generateMazeId() {
-            return 0 + (int) (Math.random() * ((100 - 0) + 1));
+        private synchronized int generateRandomMazeId() {
+            int rand=0;
+          do{
+               rand= 0 + (int) (Math.random() * ((100 - 0) + 1));
+          }while (gamesIds.contains(rand));
+          gamesIds.add(rand);
+            return rand;
         }
     }
-
-    // here u need to implement the hasCode method
+    //TODO: here u need to implement the hasCode method
 }

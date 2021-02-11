@@ -18,31 +18,37 @@ public class NewGameCreatorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        boolean createGameRequest = request.getParameter("createGame") != null;
-        boolean JoinGameRequest = request.getParameter("JoinGame") != null;
+
         String playerName = request.getParameter("name");
-        int gameCode = request.getParameter("GameCode").equals("") ? -1 : Integer.parseInt(request.getParameter("GameCode"));
-
         Player player = null;
-        if (isAcceptable(playerName)) {
-            if (createGameRequest) {
-                player = gamePool.registerPlayerInNewGame(playerName);
-            } else if(JoinGameRequest){
-                player = gamePool.registerPlayerInRandomGame(playerName);
-            }else if(gameCode!=-1){
-                player=gamePool.registerPlayerInGame(playerName,gameCode);
-            }
 
+        if (isAcceptable(playerName)) {
+            String joinGameRequest = request.getParameter("joinGameRequest");
+
+            switch (joinGameRequest) {
+                case "createGame":
+                    player = gamePool.registerPlayerInNewGame(playerName);
+                    break;
+                case "findGame":
+                    player = gamePool.registerPlayerInRandomGame(playerName);
+                    break;
+                case "enterCode":
+                    int gameCode = request.getParameter("gameCode").equals("") ? -1 :
+                        Integer.parseInt(request.getParameter("gameCode"));
+                    if (gameCode != -1) {
+                        player = gamePool.registerPlayerInGame(playerName, gameCode);
+                        break;
+                    }
+            }
             request.setAttribute("player", player);
             RequestDispatcher view = request.getRequestDispatcher("index.jsp");
             view.forward(request, response);
+//        System.out.println(request.getParameter("fName"));
+//
+//        response.sendRedirect(request.getContextPath() + "/index.jsp");
+//        response.setHeader("Location", request.getContextPath() + "/index.jsp");
+
         }
-
-        System.out.println(request.getParameter("fName"));
-
-        response.sendRedirect(request.getContextPath() + "/index.jsp");
-        response.setHeader("Location", request.getContextPath() + "/index.jsp");
-
     }
 
     private boolean isAcceptable(String playerName) {

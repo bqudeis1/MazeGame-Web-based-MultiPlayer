@@ -33,17 +33,17 @@
     <label>First name:</label><br>
     <input type="text" name="name"><br>
     <br>
-    <input type="radio" id="CreateGame" name="createGame" value="newGame">
+    <input type="radio" id="CreateGame" name="joinGameRequest" value="createGame">
     <label for="CreateGame">Create Game</label>
 
-    <input type="radio" id="FindGame" name="JoinGame" value="FindGame">
+    <input type="radio" id="FindGame" name="joinGameRequest" value="findGame" checked>
     <label for="FindGame">Find Game</label>
 
-    <input type="radio" id="EnterCode" name="JoinGame" value="EnterCode" onchange="myFunction()">
+    <input type="radio" id="EnterCode" name="joinGameRequest" value="enterCode" onchange="myFunction()">
     <label for="EnterCode">Enter Code</label>
     <br>
     <div id="GameCode" style="display: none">
-        <input type="text" name="GameCode"> <br>
+        <input type="text" name="gameCode"> <br>
     </div>
 
 
