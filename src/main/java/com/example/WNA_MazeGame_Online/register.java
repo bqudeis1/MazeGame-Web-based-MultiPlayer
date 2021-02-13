@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "newGameCreatorServlet", value = "/newGameCreatorServlet")
-public class NewGameCreatorServlet extends HttpServlet {
+public class register extends HttpServlet {
     public static GamesPool gamePool = new GamesPool();
 
     @Override

@@ -11,17 +11,28 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class Player implements Observer {
-  private final List<Item> playerItems = new ArrayList<Item>();
+  private final List<Item> playerItems = new ArrayList<>();
   private final Gold goldAmount = new Gold(30);
   private String name;
   private Direction direction = Direction.east;
   private int currentDirectionAsInt = 0;
+  private Room currentRoom;
+
+
 
   public void setCurrentRoom(Room currentRoom) {
     this.currentRoom = currentRoom;
   }
-
-  private Room currentRoom;
+  @Override
+  public String toString() {
+    return "Player{" +
+            "playerItems=" + playerItems +
+            ", goldAmount=" + goldAmount +
+            ", name='" + name + '\'' +
+            ", direction=" + direction +
+            ", currentRoom=" + currentRoom +
+            '}';
+  }
 
   public Player(String playerName){
     name=playerName;

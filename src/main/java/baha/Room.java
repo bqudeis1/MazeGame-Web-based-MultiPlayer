@@ -1,9 +1,11 @@
 package baha;
 
+import java.util.Arrays;
+
 public class Room implements MapSite {
   private final int roomNo;
   private final MapSite[] mapSites = new MapSite[5];
-  int playerDirction = 0;
+  int playerDirection = 0;
   private boolean dark;
   private boolean switchLightExists;
 
@@ -52,6 +54,18 @@ public class Room implements MapSite {
     return null;
   }
 
+
   @Override
   public void enter(Maze maze) {}
+
+  @Override
+  public String toString() {
+    return "Room{" +
+            "roomNo=" + roomNo +
+            ", mapSites=" + Arrays.toString(mapSites) +
+            ", playerDirection=" + playerDirection +
+            ", dark=" + dark +
+            ", switchLightExists=" + switchLightExists +
+            '}';
+  }
 }
