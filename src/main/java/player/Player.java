@@ -13,11 +13,20 @@ import java.util.Observer;
 public class Player implements Observer {
   private final List<Item> playerItems = new ArrayList<>();
   private final Gold goldAmount = new Gold(30);
-  private String name;
+  private final String name;
   private Direction direction = Direction.east;
   private int currentDirectionAsInt = 0;
   private Room currentRoom;
+  private final int id;
+  private int gameId;
 
+  public void setGameId(int gameId) {
+    this.gameId = gameId;
+  }
+
+  public int getId() {
+    return id;
+  }
 
 
   public void setCurrentRoom(Room currentRoom) {
@@ -36,6 +45,7 @@ public class Player implements Observer {
 
   public Player(String playerName){
     name=playerName;
+    id=0;//generat random id
   }
 
   public void forward() {
@@ -48,7 +58,10 @@ public class Player implements Observer {
     // ANA FIGHT IN BACKWARD AND FORWARD
     // STATUS)
   }
+void check(){
 
+
+}
   public void backward() {
     int backwardDirectionAsInt;
     backwardDirectionAsInt = getBackwardDirectionAsInt();
@@ -99,5 +112,9 @@ public class Player implements Observer {
     else if (direction == Direction.south) currentDirectionAsInt = 1;
     else if (direction == Direction.west) currentDirectionAsInt = 2;
     else if (direction == Direction.north) currentDirectionAsInt = 3;
+  }
+
+  public int getGameId() {
+    return gameId;
   }
 }

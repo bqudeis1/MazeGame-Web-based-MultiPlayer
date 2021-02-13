@@ -75,19 +75,22 @@ public class Maze implements Cloneable, Comparator<Maze> {
     public void addPlayer(Player player){
         Objects.requireNonNull(player);
         gameInfo.PlayersNumber++;
-        gameInfo.players.add(player);
+        gameInfo.players.put(player.getId(),player);
     }
     public void RemovePlayerFromGame(Player player){
         Objects.requireNonNull(player);
-        gameInfo.players.remove(player);
+        gameInfo.players.remove(player.getId());
         gameInfo.PlayersNumber++;
+    }
+    public Player getPlayer(int playerId){
+        return gameInfo.players.get(playerId);
     }
 
     private class GameInfo {
         private final int mazeId;
         private Integer PlayersNumber;
         private boolean isGameFull;
-        private List<Player>players= new ArrayList<>();
+        private final Hashtable<Integer,Player> players= new Hashtable<Integer,Player>();
 
         public GameInfo() {
             mazeId = generateRandomMazeId();

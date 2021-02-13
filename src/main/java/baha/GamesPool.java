@@ -5,20 +5,24 @@ import player.Player;
 import java.util.*;
 
 public class GamesPool {
-    private static final TreeMap<Integer, Maze> mazeGames = new TreeMap<>(); //represent the game Id,Game
+    private static final TreeMap<Integer, Maze> publicGames = new TreeMap<>(); //represent the game Id,Game
     private static final HashMap<Integer, Maze> reservedGames = new HashMap<>();
     private static final MazeGame mazeGame = new MazeGame();
 
 
 
-    public synchronized Player registerPlayerInGame(String playerName, int GameId) {
+    public synchronized Player registerPlayerInGame(String playerName, int gameId) {
         Player player = new Player(playerName);
-        Maze game = reservedGames.get(GameId);
+        player.setGameId(gameId);
+        Maze game = reservedGames.get(gameId);
         player.setCurrentRoom(game.getStartingRoom());
         game.addPlayer(player);
-        mazeGames.put(game.getGameId(), game);
-        mazeGames.remove(game.getGameId());
+        publicGames.put(game.getGameId(), game);
+        reservedGames.remove(game.getGameId());
         return player;
+    }
+    public Maze getGame(int gameId){
+        return publicGames.get(gameId);
     }
 
     public Player registerPlayerInNewGame(String playerName) {
@@ -30,8 +34,8 @@ public class GamesPool {
 
     public synchronized Player registerPlayerInRandomGame(String playerName) {
         Player player = null;
-        if (!mazeGames.isEmpty()) {
-            Map.Entry<Integer, Maze> entry = mazeGames.firstEntry();
+        if (!publicGames.isEmpty()) {
+            Map.Entry<Integer, Maze> entry = publicGames.firstEntry();
             if (entry.getValue().getPlayersNumber() < 4) {
                 player = registerPlayerInGame(playerName, entry.getKey());
             }

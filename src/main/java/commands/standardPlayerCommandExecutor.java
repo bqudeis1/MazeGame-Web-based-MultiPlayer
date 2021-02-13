@@ -2,6 +2,7 @@ package commands;
 
 import player.Player;
 
+import java.util.EnumSet;
 import java.util.HashMap;
 
 public class standardPlayerCommandExecutor {
@@ -19,6 +20,7 @@ public class standardPlayerCommandExecutor {
 
   private void fillPlayerCommands(Class<standardCommandSet> s) {
     standardCommandSet[] c = standardCommandSet.values();
+    //EnumSet.allOf(s).forEach(m->commands.put(m.name(),m.createCommand(player)));
     for (standardCommandSet SCT : c) {
       commands.put(SCT.name(), SCT.createCommand(player));
     }

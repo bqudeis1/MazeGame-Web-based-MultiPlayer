@@ -32,7 +32,13 @@ enum standardCommandSet implements CommandsSet {
     public Command createCommand(Player p) {
       return new backwardCommand(p);
     }
+  },
+  playerStatus("playerStatusCommand") {
+    public Command createCommand(Player p) {
+      return new turnRightCommand(p);
+    }
   };
+
 
   standardCommandSet(String turnLeftCommand) {}
 
