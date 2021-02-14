@@ -1,5 +1,7 @@
 package baha;
 
+import player.Direction;
+
 import java.util.Objects;
 
 public class StringOutputFormatter {
@@ -9,5 +11,9 @@ public class StringOutputFormatter {
             return stringToFormat;
         StringBuilder result= new StringBuilder(stringToFormat);
         return String.valueOf(result.append('.').append('\n').append("Player->"));
+    }
+    public static String getDirectionInAppropriateFormat(Direction dir){
+        return "now you are facing " + dir;
+
     }
 }

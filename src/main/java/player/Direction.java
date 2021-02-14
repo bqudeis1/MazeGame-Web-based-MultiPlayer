@@ -1,8 +1,8 @@
 package player;
 
 public enum Direction {
-  east,
-  south,
-  west,
-  north
+  east,//0
+  south,//1
+  west,//2
+  north//3
 }

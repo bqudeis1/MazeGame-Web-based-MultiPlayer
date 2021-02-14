@@ -10,7 +10,7 @@ public class turnLeftCommand implements Command {
   }
 
   @Override
-  public void execute() {
-    player.turnLeft();
+  public String execute() {
+    return player.turnLeft();
   }
 }

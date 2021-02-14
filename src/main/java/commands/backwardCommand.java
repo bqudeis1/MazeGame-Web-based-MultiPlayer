@@ -12,7 +12,7 @@ public class backwardCommand implements Command {
   }
 
   @Override
-  public void execute() {
-    player.backward();
+  public String execute() {
+    return player.backward();
   }
 }

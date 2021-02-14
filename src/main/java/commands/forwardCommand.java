@@ -12,7 +12,7 @@ public class forwardCommand implements Command {
   }
 
   @Override
-  public void execute() {
-    player.forward();
+  public String execute() {
+    return player.forward();
   }
 }
