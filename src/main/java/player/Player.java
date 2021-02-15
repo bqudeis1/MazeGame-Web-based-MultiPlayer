@@ -1,8 +1,10 @@
 package player;
 
 import baha.Door;
+import baha.MapSite;
 import baha.Room;
 import baha.StringOutputFormatter;
+import checkable.Checkable;
 import items.Gold;
 import items.Item;
 
@@ -12,6 +14,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class Player implements Observer {
+    //TODO consider using build to create player Object.
     private final List<Item> playerItems = new ArrayList<>();
     private final Gold goldAmount = new Gold(30);
     private final String name;
@@ -29,20 +32,8 @@ public class Player implements Observer {
         return id;
     }
 
-
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
-    }
-
-    @Override
-    public String toString() {
-        return "Player{" +
-                "playerItems=" + playerItems +
-                ", goldAmount=" + goldAmount +
-                ", name='" + name + '\'' +
-                ", direction=" + direction +
-                ", currentRoom=" + currentRoom +
-                '}';
     }
 
     public Player(String playerName) {
@@ -91,10 +82,6 @@ public class Player implements Observer {
         // print keys and flashlight
     }
 
-    @Override
-    public void update(Observable o, Object arg) { // implement
-    }
-
     public String turnLeft() {
         //TODO see if the player in trad mod what what happen if the player asked to turn left?.
         if (direction == Direction.north) direction = Direction.west;
@@ -114,11 +101,36 @@ public class Player implements Observer {
         return StringOutputFormatter.getDirectionInAppropriateFormat(direction);
     }
 
+    public String check() {
+        if (!currentRoom.isDark()) {
+            MapSite object = currentRoom.getMapSites()[currentDirectionAsInt];
+            if (object instanceof Checkable) {
+               return  ((Checkable) object).check();
+            }
+        }
+        return  "nothing to check";
+    }
+
     private void setDirectionToInt() {
         currentDirectionAsInt = direction.ordinal();
     }
 
     public int getGameId() {
         return gameId;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) { // implement
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "playerItems=" + playerItems +
+                ", goldAmount=" + goldAmount +
+                ", name='" + name + '\'' +
+                ", direction=" + direction +
+                ", currentRoom=" + currentRoom +
+                '}';
     }
 }

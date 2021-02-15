@@ -1,3 +1,9 @@
 package commands;
 
-interface CommandsSet {}
+import player.Player;
+
+//Marker Interface.
+public interface CommandsSet <T>{
+    public Command<T> createCommand(Player player);
+
+}

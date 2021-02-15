@@ -1,9 +1,6 @@
 package baha;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import commands.standardPlayerCommandExecutor;
-import json.Json1;
-import player.Player;
 
 public class Main {
 

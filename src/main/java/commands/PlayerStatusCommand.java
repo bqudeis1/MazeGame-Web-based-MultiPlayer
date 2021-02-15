@@ -2,15 +2,15 @@ package commands;
 
 import player.Player;
 
-public class wrongCommand implements Command{
+public class PlayerStatusCommand implements Command {
     Player player;
 
-    public wrongCommand(Player player) {
+    public PlayerStatusCommand(Player player) {
         this.player = player;
     }
 
     @Override
     public String execute() {
-        return "";
+        return player.toString();
     }
 }

@@ -3,16 +3,16 @@ package commands;
 import baha.Room;
 import player.Player;
 
-public class backwardCommand implements Command {
+public class ForwardCommand implements Command<String> {
   Player player;
   Room room;
 
-  public backwardCommand(Player p) {
+  public ForwardCommand(Player p) {
     this.player = p;
   }
 
   @Override
   public String execute() {
-    return player.backward();
+    return player.forward();
   }
 }

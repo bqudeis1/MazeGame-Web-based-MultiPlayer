@@ -10,7 +10,8 @@ public class GamesPool {
     private static final MazeGame mazeGame = new MazeGame();
 
 
-
+//TODO: refactor this class there is a problem in registerPlayerInRandomGame function.
+//TODO: add commands to player when u create player object.
     public synchronized Player registerPlayerInGame(String playerName, int gameId) {
         Player player = new Player(playerName);
         player.setGameId(gameId);

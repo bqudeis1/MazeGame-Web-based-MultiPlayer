@@ -3,6 +3,7 @@ package items;
 public class Gold extends Item implements Comparable<Gold> {
   private final String name = "Gold";
   private int amount;
+  //TODO check if this thread safe.
 
   public Gold() {}
 

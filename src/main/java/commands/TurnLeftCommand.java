@@ -2,10 +2,10 @@ package commands;
 
 import player.Player;
 
-public class turnLeftCommand implements Command {
+public class TurnLeftCommand implements Command<String> {
   Player player;
 
-  public turnLeftCommand(Player player) {
+  public TurnLeftCommand(Player player) {
     this.player = player;
   }
 

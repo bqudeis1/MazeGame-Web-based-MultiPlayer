@@ -4,6 +4,7 @@ public class FlashLight extends Item {
   public static final String name = "flashLight";
   private boolean status;
   private Gold price;
+  //TODO you may use Close here to create the FlashLight Object.
 
   public boolean getStatus() {
     return status;

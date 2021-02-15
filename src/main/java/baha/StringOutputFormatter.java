@@ -5,6 +5,7 @@ import player.Direction;
 import java.util.Objects;
 
 public class StringOutputFormatter {
+    //TODO: rename the methods in this class.
     public static String getResultInAppropriateFormat(String stringToFormat){
         Objects.requireNonNull(stringToFormat);
         if(stringToFormat.isEmpty())
