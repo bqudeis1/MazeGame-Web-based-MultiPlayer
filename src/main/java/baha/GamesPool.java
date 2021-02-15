@@ -5,7 +5,7 @@ import player.Player;
 import java.util.*;
 
 public class GamesPool {
-    private static final TreeMap<Integer, Maze> publicGames = new TreeMap<>(); //represent the game Id,Game
+    private static final TreeMap<Integer, Maze> publicGames = new TreeMap<>();    //represent the game Id,Game
     private static final HashMap<Integer, Maze> reservedGames = new HashMap<>();
     private static final MazeGame mazeGame = new MazeGame();
 

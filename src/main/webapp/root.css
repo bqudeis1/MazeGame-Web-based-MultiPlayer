@@ -1,0 +1,15 @@
+body, html {
+    height: 95%;
+    background-image: url("media/index background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.Label{
+    font-size: large;
+    color: cyan;
+}
+.pageHeader{
+    color: crimson;
+}

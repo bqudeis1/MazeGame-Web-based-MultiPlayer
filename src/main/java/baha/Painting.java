@@ -13,6 +13,22 @@ public class Painting implements MapSite {
     return "Painting";
   }
 
+  public String getContainsKeyName() {
+    return containsKeyName;
+  }
+
+  public void setContainsKeyName(String containsKeyName) {
+    this.containsKeyName = containsKeyName;
+  }
+
+  public Item getKeyItem() {
+    return keyItem;
+  }
+
+  public void setKeyItem(Item keyItem) {
+    this.keyItem = keyItem;
+  }
+
   @Override
   public Object clone() throws CloneNotSupportedException {
     return null;

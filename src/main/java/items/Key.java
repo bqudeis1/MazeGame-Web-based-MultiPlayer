@@ -4,10 +4,13 @@ public class Key extends Item {
   private String name = "key";
   private Gold price;
 
+
+
   public String getName() {
     return name;
   }
 
+  @Override
   public void setName(String name) {
     this.name = name;
   }

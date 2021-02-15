@@ -1,7 +1,7 @@
 package items;
 
 public class FlashLight extends Item {
-  public static final String name = "flashLight";
+  private String name = "flashLight";
   private boolean status;
   private Gold price;
   //TODO you may use Close here to create the FlashLight Object.
@@ -39,5 +39,10 @@ public class FlashLight extends Item {
   @Override
   public String getName() {
     return name;
+  }
+
+  @Override
+  public void setName(String name) {
+    this.name=name;
   }
 }

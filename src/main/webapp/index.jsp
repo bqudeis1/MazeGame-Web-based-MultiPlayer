@@ -6,20 +6,31 @@
 %>
 <html>
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="IndexStyles.css">
     <title>JSP - Hello World</title>
     <link rel="shortcut icon" href="#">
 </head>
-<body>
+<body id="particles-js">
+<script type="text/javascript" src="console.js"></script>
+<audio controls autoplay hidden="hidden" loop="loop">
+    <source src="media/gameplay theme.ogg" type="audio/ogg">
+    <source src="media/gameplay theme.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
 <h5>Console</h5>
-<div class="console-div" title="Console">
-    <textarea id="console" name="console" rows="4" cols="182">
-Player-><%=player.toString()+".\n"+"Player->"%>
+<div title="Console" class="console-text">
+    <textarea class="textarea" id="console2" name="console2" rows="6" readonly  >
+    </textarea>
+    <textarea class="textarea" id="console" name="console" rows="6"  >
+    Player-><%=player.toString()+".\n"+"Player->"%>
 </textarea>
 </div>
+<!-- try making textarea a console -->
+
+<!-- end of the console test -->
 <input type="button" value="Show Server Time"
        onclick='ajaxAsyncRequest("/WNA_MazeGame_Online_war_exploded/hello-servlet")'/>
 

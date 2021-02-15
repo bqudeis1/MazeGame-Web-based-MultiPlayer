@@ -1,5 +1,8 @@
 package baha;
 
+import items.Item;
+import items.Key;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +38,8 @@ public class MazeGame {
     m.addRoom(r2);
     m.addRoom(r3);
     m.addStartingRoom(r1);
+
+
 
     return m;
   }
@@ -163,6 +168,96 @@ public class MazeGame {
     Door d42 = mazeGame.MakeDoor(rooms.get(48), rooms.get(12));
     Door d43 = mazeGame.MakeDoor(rooms.get(40), rooms.get(43));
     Door d44 = mazeGame.MakeDoor(rooms.get(33), rooms.get(44));
+
+
+
+
+    // make keys
+    Item key0=new Key();
+    key0.setName("the demon king room key");
+    Item key1=new Key();
+    key1.setName("the human king room key");
+    Item key2=new Key();
+    key2.setName("the fairy queen room key");
+    Item key3=new Key();
+    key3.setName("the mermaid queen room key");
+    Item key4=new Key();
+    key4.setName("the jungle nymph room key");
+    Item key5=new Key();
+    key5.setName("the ghost whale room key");
+    Item key6=new Key();
+    key6.setName("the demon cat room key");
+    Item key7=new Key();
+    key7.setName("demon of wrath room key");
+    Item key8=new Key();
+    key8.setName("the prince of demons room key");
+    Item key9=new Key();
+    key9.setName("the sea dragon room key");
+    Item key10=new Key();
+    key10.setName("the ice demon room key");
+    Item key11=new Key();
+    key11.setName("the lightning fairy room key");
+    Item key12=new Key();
+    key12.setName("the orcs king room key");
+    Item key13=new Key();
+    key13.setName("the goblins king room key");
+    Item key14=new Key();
+    key14.setName("the slime room key");
+    Item key15=new Key();
+    key15.setName("the wargs king room key");
+    Item key16=new Key();
+    key16.setName("the trolls king room key");
+    Item key17=new Key();
+    key17.setName("the mumakil room key");
+    Item key18=new Key();
+    key18.setName("the eagles king key");
+    Item key19=new Key();
+    key19.setName("the gaints room key");
+    Item key20=new Key();
+    key20.setName("the wizards king room key");
+    Item key21=new Key();
+    key21.setName("the fire dragon room key");
+    Item key22=new Key();
+    key22.setName("the stray dogs room key");
+    Item key23=new Key();
+    key23.setName("the sage room key");
+
+
+    //create paintings
+    Painting painting0 =mazeGame.MakePainting();
+    Painting painting1 =mazeGame.MakePainting();
+    Painting painting2 =mazeGame.MakePainting();
+    Painting painting3 =mazeGame.MakePainting();
+    Painting painting4 =mazeGame.MakePainting();
+    Painting painting5 =mazeGame.MakePainting();
+    Painting painting6 =mazeGame.MakePainting();
+    Painting painting7 =mazeGame.MakePainting();
+    Painting painting8 =mazeGame.MakePainting();
+    Painting painting9 =mazeGame.MakePainting();
+    Painting painting10 =mazeGame.MakePainting();
+    Painting painting11 =mazeGame.MakePainting();
+    Painting painting12 =mazeGame.MakePainting();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     rooms.get(0).setMapSites(d0, 0);
     rooms.get(3).setMapSites(d0, 3);
