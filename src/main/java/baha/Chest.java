@@ -1,52 +1,46 @@
 package baha;
 
 import container.Container;
-import items.Item;
+import items.Key;
+import lockable.Lockable;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
-public class Chest implements MapSite, Container {
-    private boolean locked;
+public class Chest extends Container implements MapSite, Lockable {
+    private boolean isLocked;
     private String neededKeyName;
-    private List<Item> chestItem;
-
-    public void check() {
-    }
-
-    public String look() {
-        return "Chest";
-    }
 
     @Override
     public Object clone() throws CloneNotSupportedException {
         return null;
     }
 
+
     @Override
-    public void enter(Maze maze) {
+    public String check() {
+        if (!isLocked)
+            return treasuredItemsName();
+        return getLockKeyName();
     }
 
     @Override
-    public boolean addItem(Item item) {
-        return chestItem.add(item);
+    public boolean isLocked() {
+        return isLocked;
     }
 
     @Override
-    public boolean addItems(List<Item> items) {
-        return chestItem.addAll(items);
+    public void lock(Key key) {
+        if(key.getName().equals(neededKeyName))
+        isLocked = true;
     }
 
     @Override
-    public boolean isEmpty() {
-        return chestItem.isEmpty();
+    public void unlock(Key key) {
+        if(key.getName().equals(neededKeyName))
+            isLocked = false;
     }
 
     @Override
-    public List<Item> getItems(List<Item> items) {
-        List<Item> copy = new ArrayList<>(chestItem);
-        chestItem.clear();
-        return copy;
+    public String getLockKeyName() {
+        return neededKeyName;
     }
 }

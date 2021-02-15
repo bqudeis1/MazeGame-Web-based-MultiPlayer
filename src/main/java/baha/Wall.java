@@ -8,7 +8,4 @@ public class Wall implements MapSite {
   public Object clone() throws CloneNotSupportedException {
     return null;
   }
-
-  @Override
-  public void enter(Maze maze) {}
 }

@@ -1,4 +1,4 @@
-package baha;
+package common;
 
 import player.Direction;
 

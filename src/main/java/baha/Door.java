@@ -1,10 +1,12 @@
 package baha;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import items.Key;
 import json.CustomDoorSerializer;
+import lockable.Lockable;
 
 @JsonSerialize(using = CustomDoorSerializer.class)
-public class Door implements MapSite {
+public class Door implements MapSite , Lockable {
     // @Expose(serialize = false, deserialize = true)
     private final Room room1;
     // @Expose(serialize = false, deserialize = true)
@@ -50,20 +52,25 @@ public class Door implements MapSite {
         return isLocked;
     }
 
-    public void setLocked(boolean locked) {
-        this.isLocked = locked;
+    @Override
+    public void lock(Key key) {
+        if(key.getName().equals(neededKeyName))
+            isLocked = false;
     }
 
-    public String getNameNeededKey() {
+    @Override
+    public void unlock(Key key) {
+        if(key.getName().equals(neededKeyName))
+            isLocked = false;
+    }
+
+    @Override
+    public String getLockKeyName() {
         return neededKeyName;
     }
 
     public void setNameNeededKey(String neededKeyName) {
         this.neededKeyName = neededKeyName;
-    }
-
-    public String look() {
-        return "Door";
     }
 
     public String check() {
@@ -84,15 +91,9 @@ public class Door implements MapSite {
         return "Door is locked " + neededKeyName + " needed to unlock";
     }
 
-    public void useNameKey() {
-    }
-
     @Override
     public Object clone() throws CloneNotSupportedException {
         return null;
     }
 
-    @Override
-    public void enter(Maze maze) {
-    }
 }

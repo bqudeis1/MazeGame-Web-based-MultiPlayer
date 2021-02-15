@@ -8,8 +8,6 @@ public class Main {
 
   public static void main(String[] args) throws JsonProcessingException {
     // write your code here
-
-
     // standardPlayerCommand.processCommand("forwardCommand");
     // standardPlayerCommand.processCommand("backwardCommand");
   }

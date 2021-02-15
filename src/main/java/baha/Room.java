@@ -56,9 +56,6 @@ public class Room implements MapSite {
 
 
   @Override
-  public void enter(Maze maze) {}
-
-  @Override
   public String toString() {
     return "Room{" +
             "roomNo=" + roomNo +

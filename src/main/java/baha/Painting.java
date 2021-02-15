@@ -1,13 +1,13 @@
 package baha;
 
+import container.Container;
 import items.Item;
 
-public class Painting implements MapSite {
+public class Painting extends Container implements MapSite {
   public int id = 0;
   private String containsKeyName;
   private Item keyItem;
 
-  public void check() {}
 
   public String look() {
     return "Painting";
@@ -34,6 +34,9 @@ public class Painting implements MapSite {
     return null;
   }
 
+
   @Override
-  public void enter(Maze maze) {}
+  public String check() {
+    return null;
+  }
 }

@@ -3,8 +3,10 @@ package player;
 import baha.Door;
 import baha.MapSite;
 import baha.Room;
-import baha.StringOutputFormatter;
+import common.StringOutputFormatter;
 import checkable.Checkable;
+import container.Container;
+import container.IContainer;
 import items.Gold;
 import items.Item;
 
@@ -14,7 +16,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class Player implements Observer {
-    //TODO consider using build to create player Object.
+    //TODO consider using builder to create player Object.
     private final List<Item> playerItems = new ArrayList<>();
     private final Gold goldAmount = new Gold(30);
     private final String name;
@@ -23,6 +25,7 @@ public class Player implements Observer {
     private Room currentRoom;
     private final int id;
     private int gameId;
+    private MapSite facingObject; //this need to change.use this object or use facingObject method.
 
     public void setGameId(int gameId) {
         this.gameId = gameId;
@@ -34,6 +37,7 @@ public class Player implements Observer {
 
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
+        facingObject = getFacingObject();
     }
 
     public Player(String playerName) {
@@ -43,9 +47,9 @@ public class Player implements Observer {
 
     public String forward() {
         //TODO refactor this contain doublect code ordinal.
-        if (currentRoom.getMapSites()[currentDirectionAsInt] instanceof Door
-                && !((Door) currentRoom.getMapSites()[currentDirectionAsInt]).isLocked()) {
-            Door d = (Door) currentRoom.getMapSites()[currentDirectionAsInt];
+        if (getFacingObject() instanceof Door
+                && !((Door) getFacingObject()).isLocked()) {
+            Door d = (Door) getFacingObject();
             currentRoom = d.getRoom2();
             return "you are in room " + currentRoom.getRoomNo();
         }
@@ -58,14 +62,23 @@ public class Player implements Observer {
     public String backward() {
         int backwardDirectionAsInt;
         backwardDirectionAsInt = getBackwardDirectionAsInt();
-        if (currentRoom.getMapSites()[backwardDirectionAsInt] instanceof Door
-                && !((Door) currentRoom.getMapSites()[backwardDirectionAsInt]).isLocked()) {
-            Door d = (Door) currentRoom.getMapSites()[backwardDirectionAsInt];
+        if (getFacingObject() instanceof Door
+                && !((Door) getFacingObject()).isLocked()) {
+            Door d = (Door) getFacingObject();
             currentRoom = d.getRoom2();
             return "you are in room " + currentRoom.getRoomNo();
         }
         return "there is no door or door is locked";
     }
+
+    public String look() {
+        return currentRoom.isDark() ? "Room is Dark" : getFacingObject().look();
+    }
+
+    private MapSite getFacingObject() {
+        return currentRoom.getMapSites()[currentDirectionAsInt];
+    }
+
 
     private int getBackwardDirectionAsInt() {
         int backwardDirectionAsInt;
@@ -102,13 +115,22 @@ public class Player implements Observer {
     }
 
     public String check() {
+        //better replace what player facing function with variable.
         if (!currentRoom.isDark()) {
-            MapSite object = currentRoom.getMapSites()[currentDirectionAsInt];
-            if (object instanceof Checkable) {
-               return  ((Checkable) object).check();
+            MapSite facingObject = getFacingObject();
+            if (facingObject instanceof Checkable) {
+                String CheckResultAsAString = ((Checkable) facingObject).check();
+                if (facingObject instanceof IContainer) {
+                    Container container = (Container) facingObject;
+                    playerItems.addAll(container.getItems());
+                    return CheckResultAsAString;
+                }
+                return CheckResultAsAString;
             }
+        } else {
+            return "Room is Dark";
         }
-        return  "nothing to check";
+        return "nothing to check";
     }
 
     private void setDirectionToInt() {

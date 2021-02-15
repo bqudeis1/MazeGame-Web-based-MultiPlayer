@@ -1,10 +1,11 @@
 package baha;
 
+import container.Container;
 import items.Item;
 
 import java.util.List;
 
-public class Seller implements MapSite {
+public class Seller extends Container implements MapSite{
   public int id = 0;
   private List<Item> sellerItem;
 
@@ -18,5 +19,7 @@ public class Seller implements MapSite {
   }
 
   @Override
-  public void enter(Maze maze) {}
+  public String check() {
+    return null;
+  }
 }
