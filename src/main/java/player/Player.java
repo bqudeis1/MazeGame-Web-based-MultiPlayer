@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Player implements Observer {
+public class Player extends Container implements Observer {
     //TODO consider using builder to create player Object.
     private final List<Item> playerItems = new ArrayList<>();
     private final Gold goldAmount = new Gold(30);
@@ -25,7 +25,6 @@ public class Player implements Observer {
     private Room currentRoom;
     private final int id;
     private int gameId;
-    private MapSite facingObject; //this need to change.use this object or use facingObject method.
 
     public void setGameId(int gameId) {
         this.gameId = gameId;
@@ -37,7 +36,6 @@ public class Player implements Observer {
 
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
-        facingObject = getFacingObject();
     }
 
     public Player(String playerName) {
@@ -75,10 +73,9 @@ public class Player implements Observer {
         return currentRoom.isDark() ? "Room is Dark" : getFacingObject().look();
     }
 
-    private MapSite getFacingObject() {
+    public MapSite getFacingObject() {
         return currentRoom.getMapSites()[currentDirectionAsInt];
     }
-
 
     private int getBackwardDirectionAsInt() {
         int backwardDirectionAsInt;
@@ -87,12 +84,6 @@ public class Player implements Observer {
         else if (currentDirectionAsInt == 1) backwardDirectionAsInt = 3;
         else backwardDirectionAsInt = 1;
         return backwardDirectionAsInt;
-    }
-
-    public void playerStatus() {
-        System.out.println("You are facing " + direction);
-        System.out.println("You have " + goldAmount + " gold");
-        // print keys and flashlight
     }
 
     public String turnLeft() {
@@ -132,9 +123,30 @@ public class Player implements Observer {
         }
         return "nothing to check";
     }
+    public void decreaseSellerGold(Gold gold) {
+        gold.decreaseGold(gold);
+    }
+
+    public void increaseSellerGold(Gold gold) {
+        gold.increaseGold(gold);
+    }
 
     private void setDirectionToInt() {
         currentDirectionAsInt = direction.ordinal();
+    }
+
+    public Item getAndRemove(String itemName) {//TODO:rename this to meaningful name
+        Item retItem = null;
+        for (Item item : playerItems) {
+            if (item.getName().equals(itemName))
+                retItem = item;
+        }
+        return retItem;
+    }
+
+    public boolean playerHave(String itemName){
+        return playerItems.stream()
+                .anyMatch(item -> item.getName().equals(itemName));
     }
 
     public int getGameId() {

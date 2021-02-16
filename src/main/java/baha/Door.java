@@ -44,8 +44,12 @@ public class Door implements MapSite , Lockable {
         this.isOpen = open;
     }
 
-    public void close() {
-        setOpen(true);
+    public String close() {
+        if(isOpen){
+            setOpen(false);
+            return "The Door now Closed.";
+        }
+            return "The Door already Close.";
     }
 
     public boolean isLocked() {
@@ -81,7 +85,7 @@ public class Door implements MapSite , Lockable {
     }
 
     public String open() {
-        if (isLocked) {
+        if (!isLocked) {
             if (isOpen) {
                 return "Door is Open";
             }

@@ -1,6 +1,6 @@
 package commands;
 
-import commands.state_pattern.CommandState;
+import commands.standardCommands.*;
 import player.Player;
 
 public enum standardCommandSet implements CommandsSet {
@@ -18,13 +18,8 @@ public enum standardCommandSet implements CommandsSet {
   },
   helpCommand("helpCommand") {
     public Command createCommand(Player p) {
-      return new TurnRightCommand(p);
-    }
-  },
-  wrongCommand("wrongCommand") {
-    public Command createCommand(Player p) {
-      return new TurnRightCommand(p);
-    }
+      return new HelpCommand(p);
+    }//add this command
   },
   forwardCommand("forwardCommand") {
     public Command createCommand(Player p) {
@@ -36,14 +31,34 @@ public enum standardCommandSet implements CommandsSet {
       return new BackwardCommand(p);
     }
   },
-  playerStatus("playerStatusCommand") {
+  playerStatus("playerStatusCommand") {//that mean the player cant see his status while he is in trade mod?!!
     public Command createCommand(Player p) {
-      return new TurnRightCommand(p);
+      return new PlayerStatusCommand(p);
+    }
+  },
+  look("lookCommand") {
+    public Command createCommand(Player p) {
+      return new LookCommand(p);
+    }
+  },
+  check("checkCommand") {
+    public Command createCommand(Player p) {
+      return new CheckCommand(p);
+    }
+  },
+  open("openCommand") {
+    public Command createCommand(Player p) {
+      return new OpenCommand(p);
+    }
+  },
+  close("closeCommand") {
+    public Command createCommand(Player p) {
+      return new CloseCommand(p);
     }
   };
 
 
-  standardCommandSet(String turnLeftCommand) {}
+  standardCommandSet(String commandName) {}
 
   public Command createCommand(Player p) {
     return null;

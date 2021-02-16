@@ -1,5 +1,5 @@
 package commands;
 
-public interface Command <T>{
-  T execute();
+public interface Command <R,I>{
+  R execute(I... input);
 }

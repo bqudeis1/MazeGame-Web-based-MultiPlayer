@@ -12,16 +12,7 @@ public class GamesPool {
 
 //TODO: refactor this class there is a problem in registerPlayerInRandomGame function.
 //TODO: add commands to player when u create player object.
-    public synchronized Player registerPlayerInGame(String playerName, int gameId) {
-        Player player = new Player(playerName);
-        player.setGameId(gameId);
-        Maze game = reservedGames.get(gameId);
-        player.setCurrentRoom(game.getStartingRoom());
-        game.addPlayer(player);
-        publicGames.put(game.getGameId(), game);
-        reservedGames.remove(game.getGameId());
-        return player;
-    }
+
     public Maze getGame(int gameId){
         return publicGames.get(gameId);
     }
@@ -32,7 +23,16 @@ public class GamesPool {
         reservedGames.put(gameId, game);
         return registerPlayerInGame(playerName, gameId);
     }
-
+    public synchronized Player registerPlayerInGame(String playerName, int gameId) {
+        Player player = new Player(playerName);
+        player.setGameId(gameId);
+        Maze game = reservedGames.get(gameId);
+        player.setCurrentRoom(game.getStartingRoom());
+        game.addPlayer(player);
+        publicGames.put(game.getGameId(), game);
+        reservedGames.remove(game.getGameId());
+        return player;
+    }
     public synchronized Player registerPlayerInRandomGame(String playerName) {
         Player player = null;
         if (!publicGames.isEmpty()) {

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Container implements IContainer{
-     private List<Item> ItemsContainer;
+     protected List<Item> ItemsContainer;
 
      @Override
      public boolean addItem(Item item) {
@@ -29,16 +29,28 @@ public abstract class Container implements IContainer{
           ItemsContainer.clear();
           return copy;
      }
-
      @Override
-     public String treasuredItemsName(){
+     public String getItemsName(){
           if(!isEmpty()){
                StringBuilder itemsName=new StringBuilder("you Found: ");
                for(Item item: ItemsContainer) {
-                    itemsName.append(item.getName()).append(",");
+                    itemsName.append(item.getName()).append("\n");
                }
                return itemsName.append(".").toString();
           }
           return "Nothing found in "+getClass().getSimpleName();
+     }
+     @Override
+     public Item getAndRemove(String itemName) {//TODO:rename this to meaningful name
+          Item retItem = null;
+          for (Item item : ItemsContainer) {
+               if (item.getName().equals(itemName))
+                    retItem = item;
+          }
+          return retItem;
+     }
+     @Override
+     public boolean containItemName(String ItemName){
+
      }
 }

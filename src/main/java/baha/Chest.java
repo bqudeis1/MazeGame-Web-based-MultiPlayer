@@ -18,7 +18,7 @@ public class Chest extends Container implements MapSite, Lockable {
     @Override
     public String check() {
         if (!isLocked)
-            return treasuredItemsName();
+            return getItemsName();
         return getLockKeyName();
     }
 
@@ -29,8 +29,7 @@ public class Chest extends Container implements MapSite, Lockable {
 
     @Override
     public void lock(Key key) {
-        if(key.getName().equals(neededKeyName))
-        isLocked = true;
+
     }
 
     @Override

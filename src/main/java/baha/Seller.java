@@ -1,25 +1,45 @@
 package baha;
 
 import container.Container;
+import items.Gold;
 import items.Item;
 
 import java.util.List;
 
-public class Seller extends Container implements MapSite{
-  public int id = 0;
-  private List<Item> sellerItem;
+public class Seller extends Container implements MapSite {
+    private final int id = 0;
+    private Gold gold;
 
-  public String look() {
-    return "Seller";
-  }
+    public void decreaseSellerGold(Gold gold) {
+        gold.decreaseGold(gold);
+    }
 
-  @Override
-  public Object clone() throws CloneNotSupportedException {
-    return null;
-  }
+    public void increaseSellerGold(Gold gold) {
+        gold.increaseGold(gold);
+    }
 
-  @Override
-  public String check() {
-    return null;
-  }
+
+    public Item getAndRemove(String itemName) {//TODO:rename this to meaningful name
+        Item retItem = null;
+        for (Item item : ItemsContainer) {
+            if (item.getName().equals(itemName))
+                retItem = item;
+        }
+        return retItem;
+    }
+
+    @Override
+    public String look() {
+        return "Seller";
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return null;
+    }
+
+    @Override
+    public String check() {
+        return null;
+    }
 }

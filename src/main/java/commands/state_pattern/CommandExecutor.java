@@ -8,10 +8,10 @@ import player.Player;
 
 import java.util.HashMap;
 
-public class CommandExecutor<T> {
+public class CommandExecutor {
     private final Player player;
-    private final CommandState standardCommandsState = new StandardCommandState<>(this);
-    private final CommandState TradeCommandsState = new TradeCommandState<>(this);
+    private final CommandState standardCommandsState = new StandardCommandState(this);
+    private final CommandState TradeCommandsState = new TradeCommandState(this);
     private CommandState currentCommandsState;
 
     public CommandState getTradeCommandsState() {

@@ -3,16 +3,17 @@ package commands.state_pattern;
 import commands.Command;
 import commands.CommandsSet;
 import commands.standardCommandSet;
+import commands.tradeCommandSet;
 
 import java.util.HashMap;
 
-public class TradeCommandState<T> implements CommandState {
-    CommandExecutor<T> commandExecutor;
-    private final HashMap<String, Command<T>> commands = new HashMap<String, Command<T>>();
+public class TradeCommandState implements CommandState {
+    CommandExecutor commandExecutor;
+    private final HashMap<String, Command> commands = new HashMap<String, Command>();
 
-    public TradeCommandState(CommandExecutor<T> commandExecutor){
+    public TradeCommandState(CommandExecutor commandExecutor){
         this.commandExecutor=commandExecutor;
-        fillPlayerCommands(standardCommandSet.class);
+        fillPlayerCommands(tradeCommandSet.class);
     }
     public void fillPlayerCommands(Class< ? extends CommandsSet> s)  {
         //TODO refactor to accept any class.
@@ -24,10 +25,10 @@ public class TradeCommandState<T> implements CommandState {
     }
     @Override
     public String processCommand(String commandName) {
-        if(commandName.equals("QuiteTrade")){
+        if(commandName.equals("FinishTrade")){
             commandExecutor.setState(commandExecutor.getStandardCommandsState());
         }
-        return null;
+        return (String) commands.get(commandName).execute();
     }
 }
 
