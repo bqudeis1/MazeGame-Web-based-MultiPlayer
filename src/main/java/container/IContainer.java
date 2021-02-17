@@ -8,11 +8,12 @@ import java.util.List;
 
 public interface IContainer extends Checkable {
      boolean addItem(Item item);
-     boolean addItems(List<Item> items);
      List<Item> getItems();
+     boolean addItems(List<Item> items);
      String getItemsName();
      boolean isEmpty();
      public Item getAndRemove(String itemName);
+     public Item get(String itemName);
      public boolean containItemName(String itemName);
 }
 

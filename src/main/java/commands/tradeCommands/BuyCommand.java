@@ -2,12 +2,14 @@ package commands.tradeCommands;
 
 import baha.Seller;
 import commands.Command;
+import container.Container;
+import items.Gold;
 import items.Item;
 import player.Player;
 
 import java.util.Objects;
 
-public class BuyCommand implements Command<String,String> {
+public class BuyCommand implements Command<String, String> {
     Player player;
 
     public BuyCommand(Player p) {
@@ -17,15 +19,24 @@ public class BuyCommand implements Command<String,String> {
     @Override
     public String execute(String... input) {
         Objects.requireNonNull(input);
-        Seller seller = (Seller) player.getFacingObject();
+        Seller sellerContainer = (Seller) player.getFacingObject();
         String itemName = input[0].replaceFirst("buy", "");
-        if (seller.containItemName(itemName)) {
-            Item itemToSell= seller.getAndRemove(itemName);
-            player.addItem(itemToSell);
-            seller.increaseSellerGold(itemToSell.getPrice());
-            player.decreaseSellerGold(itemToSell.getPrice());
-            return "You just buy " + itemName + ".";
+        if (sellerContainer.containItemName(itemName)) {
+            Item itemToSell = sellerContainer.getAndRemove(itemName);
+            Gold gold = itemToSell.getPrice();
+            if (dosePlayerHaveMoneyToBuy(gold)) {//TODO function name change.
+                player.addItem(itemToSell);
+
+                sellerContainer.increaseSellerGold(itemToSell.getPrice());
+                player.decreasePlayerGold(itemToSell.getPrice());
+                return "You just buy " + itemName + ".";
+            }
+            return "You don't have Enough money.";
         }
-        return "You don't have " + itemName + " to sell.";
+        return "Seller doesn't have " + itemName + " to sell.";
+    }
+
+    private boolean dosePlayerHaveMoneyToBuy(Gold gold) {
+        return player.getGoldAmount().compareTo(gold) <= 0;
     }
 }

@@ -1,7 +1,7 @@
 package items;
 
-public class Key extends Item {
-  private String name = "key";
+public class Key implements Item {
+  private  String name = "key";
   private Gold price;
 
 
@@ -10,7 +10,6 @@ public class Key extends Item {
     return name;
   }
 
-  @Override
   public void setName(String name) {
     this.name = name;
   }

@@ -1,14 +1,10 @@
 package items;
 
-public class Gold extends Item implements Comparable<Gold> {
-    private String name = "Gold";
+public class Gold implements Comparable<Gold>, Item {
+    private final String name = "Gold";
     private int amount;
     //TODO check if this thread safe.
 
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public Gold(int amount) {
         this.amount = amount;
