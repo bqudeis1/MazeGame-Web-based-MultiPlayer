@@ -1,6 +1,7 @@
 package container;
 
 import checkable.Checkable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import items.Item;
 
 import java.util.ArrayList;

@@ -1,11 +1,15 @@
 package baha;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import container.Container;
 import items.Item;
-
+@JsonDeserialize(as = Mirror.class)
 public class Mirror extends Container implements MapSite {
   private String containsKeyName;
   private Item keyItem;
+
+  public Mirror() {
+  }
 
   @Override
   public Object clone() throws CloneNotSupportedException {

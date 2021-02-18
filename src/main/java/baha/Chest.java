@@ -1,14 +1,18 @@
 package baha;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import container.Container;
 import items.Item;
 import items.Key;
 import lockable.Lockable;
 
-
+@JsonDeserialize(as = Chest.class)
 public class Chest extends Container implements MapSite, Lockable {
     private boolean isLocked;
     private String neededKeyName;
+
+    public Chest() {
+    }
 
     @Override
     public Object clone() throws CloneNotSupportedException {

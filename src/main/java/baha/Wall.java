@@ -1,8 +1,32 @@
 package baha;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+@JsonDeserialize(as = Wall.class)
 public class Wall implements MapSite {
 
-  public int id = 0;
+
+  private int id = 0;
+  private final String name="Wall";
+
+  public Wall() {
+  }
+
+//  public void setName(String name) {
+//    this.name = name;
+//  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
 
   @Override
   public Object clone() throws CloneNotSupportedException {

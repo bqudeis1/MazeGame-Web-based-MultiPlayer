@@ -15,6 +15,11 @@ public class Door implements MapSite , Lockable {
     private boolean isLocked;
     private transient String neededKeyName;
 
+    public Door() {
+        room1=new Room(-1);
+        room2=new Room(-1);
+    }
+
     public Door(Room r1, Room r2) { // check r1,r2 is not null
         room1 = r1;
         room2 = r2;

@@ -2,7 +2,7 @@ package items;
 
 public class Key implements Item {
   private  String name = "key";
-  private Gold price;
+  private Gold price=new Gold(10);
 
 
 

@@ -1,13 +1,17 @@
 package baha;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import container.Container;
 import items.Item;
-
+@JsonDeserialize(as = Painting.class)
 public class Painting extends Container implements MapSite {
   public int id = 0;
   private String containsKeyName;
   private Item keyItem;
 
+  public Painting(){
+
+  }
 
   public String look() {
     return "Painting";

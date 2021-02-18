@@ -1,5 +1,8 @@
 package baha;
 
+import container.Container;
+import items.Key;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -260,7 +263,40 @@ public class MazeFactory {
     rooms.get(0).setMapSites(d0, 0);
     rooms.get(3).setMapSites(d0, 3);
 
+
+
+
+    //test for json
     Maze myMaze = new Maze();
+    Room walls=mazeGame.MakeRoom(100);
+    Room paintings=mazeGame.MakeRoom(101);
+    Room chests=mazeGame.MakeRoom(102);
+    Room mirrors=mazeGame.MakeRoom(103);
+    Room sellers=mazeGame.MakeRoom(104);
+    Room doors=mazeGame.MakeRoom(105);
+
+    Wall walls0=mazeGame.MakeWall();
+    walls.setMapSites(walls0,0);
+    walls.setMapSites(walls0,1);
+    walls.setMapSites(walls0,2);
+    walls.setMapSites(walls0,3);
+    walls.setMapSites(walls0,4);
+
+    Painting paintings0=mazeGame.MakePainting();
+    Painting paintings1=mazeGame.MakePainting();
+    Painting paintings2=mazeGame.MakePainting();
+    Painting paintings3=mazeGame.MakePainting();
+    Key keys0=new Key();
+    keys0.setName("dragon improper room key");
+    painting0.setKeyItem(keys0);
+
+
+    myMaze.addRoom(walls);
+    //myMaze.addRoom(paintings);
+
+
+
+
     return myMaze;
   }
   // factory methods.
