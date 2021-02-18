@@ -26,7 +26,7 @@ public class SellCommand implements Command<String, String> {
             if (doseSellerHaveMoneyToBuy(gold,seller)) {//TODO function name change.
                 seller.addItem(itemToSell);
                 seller.decreaseSellerGold(itemToSell.getPrice());
-                player.increaseSellerGold(itemToSell.getPrice());
+                player.increasePlayerGold(itemToSell.getPrice());
                 return "You just Sell " + itemName + ".";
             }
             return "Seller don't have Enough money.";

@@ -1,5 +1,7 @@
 package baha;
 
+import items.Gold;
+import items.Item;
 import player.Player;
 
 import java.util.*;
@@ -13,7 +15,7 @@ public class GamesPool {
 //TODO: refactor this class there is a problem in registerPlayerInRandomGame function.
 //TODO: add commands to player when u create player object.
 
-    public Maze getGame(int gameId){
+    public Maze getGame(int gameId) {
         return publicGames.get(gameId);
     }
 
@@ -23,6 +25,7 @@ public class GamesPool {
         reservedGames.put(gameId, game);
         return registerPlayerInGame(playerName, gameId);
     }
+
     public synchronized Player registerPlayerInGame(String playerName, int gameId) {
         Player player = new Player(playerName);
         player.setGameId(gameId);
@@ -33,6 +36,7 @@ public class GamesPool {
         reservedGames.remove(game.getGameId());
         return player;
     }
+
     public synchronized Player registerPlayerInRandomGame(String playerName) {
         Player player = null;
         if (!publicGames.isEmpty()) {
@@ -46,7 +50,17 @@ public class GamesPool {
         return player;
     }
 
+    public void removePlayerFromGame(int gameId, int playerId) {
+        if (publicGames.containsKey(gameId)) {
+            Maze maze = publicGames.get(gameId);
+            maze.removePlayerFromGame(playerId);
+            //put the item in Contaner
+        }
+    }
+
     private static Maze CreateGame() {
         return mazeGame.CreateMaze();
     }
+
+
 }

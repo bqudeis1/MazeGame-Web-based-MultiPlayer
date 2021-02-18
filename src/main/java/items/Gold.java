@@ -17,6 +17,7 @@ public class Gold implements Comparable<Gold>, Item {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
     public synchronized void decreaseGold(Gold gold) {
         if (this.amount > gold.amount)
             this.amount = this.amount - gold.amount;
@@ -26,6 +27,16 @@ public class Gold implements Comparable<Gold>, Item {
         if (gold.amount >= 0)
             this.amount = this.amount + gold.amount;
     }
+
+    public synchronized Gold divideGold(int divideBy) {
+        int amount = getAmount();
+        if (amount == 0)
+            return new Gold(0);
+        if (this.getAmount() > 0)
+            return new Gold(this.getAmount() / divideBy);
+        throw new IllegalArgumentException();
+    }
+
     @Override
     public String toString() {
         return amount + name;

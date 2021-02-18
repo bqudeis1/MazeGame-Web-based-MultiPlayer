@@ -24,7 +24,7 @@ public class BuyCommand implements Command<String, String> {
         if (sellerContainer.containItemName(itemName)) {
             Item itemToSell = sellerContainer.getAndRemove(itemName);
             Gold gold = itemToSell.getPrice();
-            if (dosePlayerHaveMoneyToBuy(gold)) {//TODO function name change.
+            if (dosePlayerHaveMoneyToBuy(gold)) {//TODO: function name change.
                 player.addItem(itemToSell);
 
                 sellerContainer.increaseSellerGold(itemToSell.getPrice());

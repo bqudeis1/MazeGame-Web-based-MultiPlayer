@@ -12,12 +12,12 @@ public class Room implements MapSite, Observer {
     int playerDirection = 0;
     private boolean LightsOn;
     private boolean roomLightPrevState = true;
+    private boolean switchLightExists;
+
 
     public boolean isSwitchLightExists() {
         return switchLightExists;
     }
-
-    private boolean switchLightExists;
 
     public Room(int roomNo) {
         this.roomNo = roomNo;

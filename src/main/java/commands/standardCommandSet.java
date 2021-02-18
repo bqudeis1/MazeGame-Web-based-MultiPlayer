@@ -1,5 +1,6 @@
 package commands;
 
+import baha.GamesPool;
 import commands.standardCommands.*;
 import player.Player;
 
@@ -73,7 +74,7 @@ public enum standardCommandSet implements CommandsSet {
   },
   quitGame ("quitGame") {
     public Command createCommand(Player p) {
-      return new quitGameCommand(p);
+      return new QuitGameCommand(new GamesPool());
     }
   };
 

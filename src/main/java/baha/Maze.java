@@ -1,5 +1,7 @@
 package baha;
 
+import container.Container;
+import items.Gold;
 import player.Player;
 
 import java.util.*;
@@ -9,7 +11,7 @@ public class Maze implements Cloneable, Comparator<Maze> {
     private final GameInfo gameInfo;
     private final List<Room> roomList = new ArrayList<Room>();
     private final HashMap<Room, Boolean> startingRooms = new HashMap();
-    private static Set<Integer>gamesIds= new HashSet<>();
+    private static Set<Integer> gamesIds = new HashSet<>();
 
     public GameInfo getGameInfo() {
         return gameInfo;
@@ -22,8 +24,8 @@ public class Maze implements Cloneable, Comparator<Maze> {
     public Maze() {
         synchronized (this) {//TODO:check this synchronization
             gameInfo = new GameInfo();
-            gameInfo.PlayersNumber=0;
-            gameInfo.isGameFull=false;
+            gameInfo.playersNumber = 0;
+            gameInfo.isGameFull = false;
         }
     }
 
@@ -44,7 +46,7 @@ public class Maze implements Cloneable, Comparator<Maze> {
     }
 
     public int getPlayersNumber() {
-        return gameInfo.PlayersNumber;
+        return gameInfo.playersNumber;
     }
 
     public Room getRoom(int roomId) {
@@ -69,39 +71,71 @@ public class Maze implements Cloneable, Comparator<Maze> {
     public int compare(Maze o1, Maze o2) {
         Objects.requireNonNull(o1);
         Objects.requireNonNull(o2);
-        return o1.gameInfo.PlayersNumber.compareTo(o2.gameInfo.PlayersNumber);
+        return o1.gameInfo.playersNumber.compareTo(o2.gameInfo.playersNumber);
     }
 
-    public void addPlayer(Player player){
+    public void addPlayer(Player player) {
         Objects.requireNonNull(player);
-        gameInfo.PlayersNumber++;
-        gameInfo.players.put(player.getId(),player);
+        gameInfo.playersNumber++;
+        gameInfo.players.put(player.getId(), player);
     }
-    public void RemovePlayerFromGame(Player player){
-        Objects.requireNonNull(player);
-        gameInfo.players.remove(player.getId());
-        gameInfo.PlayersNumber++;
+
+    public void removePlayerFromGame(int playerId) {
+        if (gameInfo.players.contains(playerId)) {
+            Player player = gameInfo.removePlayer(playerId);
+            if (player != null) {
+                player.putItemsOnGround();
+                Gold playerGold = player.getGoldAmount();
+                Gold eachPlayerPortion = partitioningPlayerGold(playerGold);
+                increaseEachPlayersGold(eachPlayerPortion);
+            }
+        }
     }
-    public Player getPlayer(int playerId){
+
+    private void increaseEachPlayersGold(Gold eachPlayerPortion) {
+        gameInfo.players.forEach((key, value) -> {
+            System.out.println(", Value: " + value);
+            value.increasePlayerGold(eachPlayerPortion);
+        });
+    }
+
+    private Gold partitioningPlayerGold(Gold playerGold) {
+        return playerGold.divideGold(gameInfo.playersNumber);
+    }
+
+    public Player getPlayer(int playerId) {
         return gameInfo.players.get(playerId);
     }
 
     private class GameInfo {
         private final int mazeId;
-        private Integer PlayersNumber;
+        private Integer playersNumber;
         private boolean isGameFull;
-        private final Hashtable<Integer,Player> players= new Hashtable<Integer,Player>();
+        private final Hashtable<Integer, Player> players = new Hashtable<Integer, Player>();
 
         public GameInfo() {
             mazeId = generateRandomMazeId();
         }
+
         private synchronized int generateRandomMazeId() {
-            int rand=0;
-          do{
-               rand= 0 + (int) (Math.random() * ((100 - 0) + 1));
-          }while (gamesIds.contains(rand));
-          gamesIds.add(rand);
+            int rand = 0;
+            do {
+                rand = 0 + (int) (Math.random() * ((100 - 0) + 1));
+            } while (gamesIds.contains(rand));
+            gamesIds.add(rand);
             return rand;
+        }
+
+        private Player removePlayer(int playerId) {
+            Player player = players.remove(playerId);
+            playersNumber = players.size();
+            return player;
+        }
+
+        private void addPlayer(Player player) {
+            Objects.requireNonNull(player);
+            players.put(player.getId(), player);
+            playersNumber = players.size();//you may need to remove this variable.
         }
     }
     //TODO: here u need to implement the hasCode method

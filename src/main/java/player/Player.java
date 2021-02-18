@@ -166,7 +166,7 @@ public class Player extends Container implements Observer, Comparator<Player> {
         gold.decreaseGold(gold);
     }
 
-    public void increaseSellerGold(Gold gold) {
+    public void increasePlayerGold(Gold gold) {
         gold.increaseGold(gold);
     }
 
@@ -214,5 +214,8 @@ public class Player extends Container implements Observer, Comparator<Player> {
         return o1.getGoldAmount().compareTo(o2.goldAmount);
     }
 
-
+    public void putItemsOnGround() {
+        Container container= (Container) currentRoom.getMapSites()[5];
+        container.addItems(playerItems);
+    }
 }
