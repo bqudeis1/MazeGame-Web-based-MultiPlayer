@@ -7,15 +7,13 @@ import common.StringOutputFormatter;
 import checkable.Checkable;
 import container.Container;
 import container.IContainer;
+import items.FlashLight;
 import items.Gold;
 import items.Item;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 
-public class Player extends Container implements Observer {
+public class Player extends Container implements Observer, Comparator<Player> {
     //TODO consider using builder to create player Object.
     private final List<Item> playerItems = new ArrayList<>();
     private final Gold goldAmount = new Gold(30);
@@ -25,6 +23,10 @@ public class Player extends Container implements Observer {
     private Room currentRoom;
     private final int id;
     private int gameId;
+
+    public Gold getGoldAmount() {
+        return goldAmount;
+    }
 
     public void setGameId(int gameId) {
         this.gameId = gameId;
@@ -48,13 +50,49 @@ public class Player extends Container implements Observer {
         if (getFacingObject() instanceof Door
                 && !((Door) getFacingObject()).isLocked()) {
             Door d = (Door) getFacingObject();
-            currentRoom = d.getRoom2();
+            currentRoomChanged(d);
             return "you are in room " + currentRoom.getRoomNo();
         }
         return "there is no door or door is locked";
         // TODO:SEND A MESSAGE TO USER IF DOOR IS LOCKED OR NO DOOR OR IF DOOR CLOSED (SEND BACK DOOR
         // ANA FIGHT IN BACKWARD AND FORWARD
         // STATUS)
+    }
+
+    private void currentRoomChanged(Door d) {
+        ExitCurrentRoom();
+        Room nextRoom=d.getRoom2();
+        currentRoom = d.getRoom2();
+        //check if player in the room here and start the fight.
+        enterNewRoom();
+    }
+
+    private void ExitCurrentRoom() {
+        playerItems.forEach(item -> {
+            if (item instanceof FlashLight) {
+                ((FlashLight) item).deleteObserver(currentRoom);
+            }
+        });
+    }
+
+    public String switchLight() {
+        if (currentRoom.isSwitchLightExists()) {
+            currentRoom.switchLight();
+            return "You just switched the light";
+        }
+        return "Room dose not have light";
+    }
+
+    private void Fight(Player player){
+     player.compare(player,player);
+
+    }
+    private void enterNewRoom() {
+        playerItems.forEach(item -> {
+            if (item instanceof FlashLight) {
+                ((FlashLight) item).addObserver(currentRoom);
+            }
+        });
     }
 
     public String backward() {
@@ -70,7 +108,7 @@ public class Player extends Container implements Observer {
     }
 
     public String look() {
-        return currentRoom.isDark() ? "Room is Dark" : getFacingObject().look();
+        return currentRoom.isLightsOn() ? "Room is Dark" : getFacingObject().look();
     }
 
     public MapSite getFacingObject() {
@@ -107,7 +145,7 @@ public class Player extends Container implements Observer {
 
     public String check() {
         //better replace what player facing function with variable.
-        if (!currentRoom.isDark()) {
+        if (!currentRoom.isLightsOn()) {
             MapSite facingObject = getFacingObject();
             if (facingObject instanceof Checkable) {
                 String CheckResultAsAString = ((Checkable) facingObject).check();
@@ -123,11 +161,12 @@ public class Player extends Container implements Observer {
         }
         return "nothing to check";
     }
-    public void decreaseSellerGold(Gold gold) {
+
+    public void decreasePlayerGold(Gold gold) {
         gold.decreaseGold(gold);
     }
 
-    public void increaseSellerGold(Gold gold) {
+    public void increasePlayerGold(Gold gold) {
         gold.increaseGold(gold);
     }
 
@@ -144,7 +183,7 @@ public class Player extends Container implements Observer {
         return retItem;
     }
 
-    public boolean playerHave(String itemName){
+    public boolean playerHave(String itemName) {
         return playerItems.stream()
                 .anyMatch(item -> item.getName().equals(itemName));
     }
@@ -166,5 +205,17 @@ public class Player extends Container implements Observer {
                 ", direction=" + direction +
                 ", currentRoom=" + currentRoom +
                 '}';
+    }
+
+    @Override
+    public int compare(Player o1, Player o2) {
+        Objects.requireNonNull(o1);
+        Objects.requireNonNull(o2);
+        return o1.getGoldAmount().compareTo(o2.goldAmount);
+    }
+
+    public void putItemsOnGround() {
+        Container container= (Container) currentRoom.getMapSites()[5];
+        container.addItems(playerItems);
     }
 }

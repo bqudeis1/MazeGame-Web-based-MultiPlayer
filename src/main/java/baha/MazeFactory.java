@@ -1,16 +1,13 @@
 package baha;
 
-import items.Item;
-import items.Key;
-
 import java.util.ArrayList;
 import java.util.List;
 
 // this class responsible for create the maze
-public class MazeGame {
+public class MazeFactory {
   public Maze CreateMaze() {
     // maze creation goes here, use builder of factory method.
-    MazeGame mazeGame = new MazeGame();
+    MazeFactory mazeGame = new MazeFactory();
     Room r1 = mazeGame.MakeRoom(1);
     Room r2 = mazeGame.MakeRoom(2);
     Room r3 = mazeGame.MakeRoom(3);
@@ -38,15 +35,16 @@ public class MazeGame {
     m.addRoom(r2);
     m.addRoom(r3);
     m.addStartingRoom(r1);
+    m.addStartingRoom(r3);
 
-
+//starting rooms 0,20,23,1
 
     return m;
   }
 
   public Maze CreateMap1Maze() {
     final int mazeSize = 50;
-    MazeGame mazeGame = new MazeGame();
+    MazeFactory mazeGame = new MazeFactory();
 
     // create the maze rooms
     List<Room> rooms = new ArrayList<Room>();
@@ -173,54 +171,54 @@ public class MazeGame {
 
 
     // make keys
-    Item key0=new Key();
-    key0.setName("the demon king room key");
-    Item key1=new Key();
-    key1.setName("the human king room key");
-    Item key2=new Key();
-    key2.setName("the fairy queen room key");
-    Item key3=new Key();
-    key3.setName("the mermaid queen room key");
-    Item key4=new Key();
-    key4.setName("the jungle nymph room key");
-    Item key5=new Key();
-    key5.setName("the ghost whale room key");
-    Item key6=new Key();
-    key6.setName("the demon cat room key");
-    Item key7=new Key();
-    key7.setName("demon of wrath room key");
-    Item key8=new Key();
-    key8.setName("the prince of demons room key");
-    Item key9=new Key();
-    key9.setName("the sea dragon room key");
-    Item key10=new Key();
-    key10.setName("the ice demon room key");
-    Item key11=new Key();
-    key11.setName("the lightning fairy room key");
-    Item key12=new Key();
-    key12.setName("the orcs king room key");
-    Item key13=new Key();
-    key13.setName("the goblins king room key");
-    Item key14=new Key();
-    key14.setName("the slime room key");
-    Item key15=new Key();
-    key15.setName("the wargs king room key");
-    Item key16=new Key();
-    key16.setName("the trolls king room key");
-    Item key17=new Key();
-    key17.setName("the mumakil room key");
-    Item key18=new Key();
-    key18.setName("the eagles king key");
-    Item key19=new Key();
-    key19.setName("the gaints room key");
-    Item key20=new Key();
-    key20.setName("the wizards king room key");
-    Item key21=new Key();
-    key21.setName("the fire dragon room key");
-    Item key22=new Key();
-    key22.setName("the stray dogs room key");
-    Item key23=new Key();
-    key23.setName("the sage room key");
+//    Item key0=new Key();
+//    key0.setName("the demon king room key");
+//    Item key1=new Key();
+//    key1.setName("the human king room key");
+//    Item key2=new Key();
+//    key2.setName("the fairy queen room key");
+//    Item key3=new Key();
+//    key3.setName("the mermaid queen room key");
+//    Item key4=new Key();
+//    key4.setName("the jungle nymph room key");
+//    Item key5=new Key();
+//    key5.setName("the ghost whale room key");
+//    Item key6=new Key();
+//    key6.setName("the demon cat room key");
+//    Item key7=new Key();
+//    key7.setName("demon of wrath room key");
+//    Item key8=new Key();
+//    key8.setName("the prince of demons room key");
+//    Item key9=new Key();
+//    key9.setName("the sea dragon room key");
+//    Item key10=new Key();
+//    key10.setName("the ice demon room key");
+//    Item key11=new Key();
+//    key11.setName("the lightning fairy room key");
+//    Item key12=new Key();
+//    key12.setName("the orcs king room key");
+//    Item key13=new Key();
+//    key13.setName("the goblins king room key");
+//    Item key14=new Key();
+//    key14.setName("the slime room key");
+//    Item key15=new Key();
+//    key15.setName("the wargs king room key");
+//    Item key16=new Key();
+//    key16.setName("the trolls king room key");
+//    Item key17=new Key();
+//    key17.setName("the mumakil room key");
+//    Item key18=new Key();
+//    key18.setName("the eagles king key");
+//    Item key19=new Key();
+//    key19.setName("the gaints room key");
+//    Item key20=new Key();
+//    key20.setName("the wizards king room key");
+//    Item key21=new Key();
+//    key21.setName("the fire dragon room key");
+//    Item key22=new Key();
+//    key22.setName("the stray dogs room key");
+//    Item key23=new Key();
+//    key23.setName("the sage room key");
 
 
     //create paintings

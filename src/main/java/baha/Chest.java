@@ -1,6 +1,7 @@
 package baha;
 
 import container.Container;
+import items.Item;
 import items.Key;
 import lockable.Lockable;
 
@@ -42,4 +43,5 @@ public class Chest extends Container implements MapSite, Lockable {
     public String getLockKeyName() {
         return neededKeyName;
     }
+
 }

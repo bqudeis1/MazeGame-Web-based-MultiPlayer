@@ -8,6 +8,11 @@ import java.util.List;
 
 public class Seller extends Container implements MapSite {
     private final int id = 0;
+
+    public Gold getGold() {
+        return gold;
+    }
+
     private Gold gold;
 
     public void decreaseSellerGold(Gold gold) {
@@ -16,16 +21,6 @@ public class Seller extends Container implements MapSite {
 
     public void increaseSellerGold(Gold gold) {
         gold.increaseGold(gold);
-    }
-
-
-    public Item getAndRemove(String itemName) {//TODO:rename this to meaningful name
-        Item retItem = null;
-        for (Item item : ItemsContainer) {
-            if (item.getName().equals(itemName))
-                retItem = item;
-        }
-        return retItem;
     }
 
     @Override

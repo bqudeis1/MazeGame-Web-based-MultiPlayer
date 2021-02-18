@@ -16,7 +16,7 @@ public class TradeCommandState implements CommandState {
         fillPlayerCommands(tradeCommandSet.class);
     }
     public void fillPlayerCommands(Class< ? extends CommandsSet> s)  {
-        //TODO refactor to accept any class.
+        //TODO: refactor to accept any class.
         standardCommandSet[] c = standardCommandSet.values();
         //EnumSet.allOf(s).forEach(m->commands.put(m.name(),m.createCommand(player)));
         for (standardCommandSet SCT : c) {

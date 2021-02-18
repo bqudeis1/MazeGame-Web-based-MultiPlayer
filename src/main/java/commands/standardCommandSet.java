@@ -1,5 +1,6 @@
 package commands;
 
+import baha.GamesPool;
 import commands.standardCommands.*;
 import player.Player;
 
@@ -54,6 +55,26 @@ public enum standardCommandSet implements CommandsSet {
   close("closeCommand") {
     public Command createCommand(Player p) {
       return new CloseCommand(p);
+    }
+  },
+  useKeyCommand("useKeyCommand") {
+    public Command createCommand(Player p) {
+      return new UseKeyCommand(p);
+    }
+  },
+  useFlashLight("UseFlashLightCommand") {
+    public Command createCommand(Player p) {
+      return new UseFlashLightCommand(p);
+    }
+  },
+  switchLight("switchLightCommand") {
+    public Command createCommand(Player p) {
+      return new SwitchLightCommand(p);
+    }
+  },
+  quitGame ("quitGame") {
+    public Command createCommand(Player p) {
+      return new QuitGameCommand(new GamesPool());
     }
   };
 
