@@ -4,13 +4,14 @@ import container.Container;
 import items.Gold;
 import player.Player;
 
+import java.rmi.UnexpectedException;
 import java.util.*;
 
 public class Maze implements Cloneable, Comparator<Maze> {
     //TODO builder
     private final GameInfo gameInfo;
     private final List<Room> roomList = new ArrayList<Room>();
-    private final HashMap<Room, Boolean> startingRooms = new HashMap();
+    private final Set<Room> startingRooms = new HashSet<>();
     private static Set<Integer> gamesIds = new HashSet<>();
 
     public GameInfo getGameInfo() {
@@ -18,7 +19,7 @@ public class Maze implements Cloneable, Comparator<Maze> {
     }
 
     public void addStartingRoom(Room r) {
-        startingRooms.put(roomList.get(0), false);//this need to edit.
+        startingRooms.add(r);
     }
 
     public Maze() {
@@ -58,13 +59,10 @@ public class Maze implements Cloneable, Comparator<Maze> {
     }
 
     public Room getStartingRoom() {
-        return startingRooms.keySet()
-                .stream()
-                .filter(key -> {
-                    startingRooms.get(key);
-                    return true;
-                })
-                .findFirst().get();
+        if(!startingRooms.isEmpty()){
+            return startingRooms.iterator().next();
+        }
+        return null;
     }
 
     @Override

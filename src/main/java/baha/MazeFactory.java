@@ -1,16 +1,13 @@
 package baha;
 
-import items.Item;
-import items.Key;
-
 import java.util.ArrayList;
 import java.util.List;
 
 // this class responsible for create the maze
-public class MazeGame {
+public class MazeFactory {
   public Maze CreateMaze() {
     // maze creation goes here, use builder of factory method.
-    MazeGame mazeGame = new MazeGame();
+    MazeFactory mazeGame = new MazeFactory();
     Room r1 = mazeGame.MakeRoom(1);
     Room r2 = mazeGame.MakeRoom(2);
     Room r3 = mazeGame.MakeRoom(3);
@@ -38,15 +35,16 @@ public class MazeGame {
     m.addRoom(r2);
     m.addRoom(r3);
     m.addStartingRoom(r1);
+    m.addStartingRoom(r3);
 
-
+//starting rooms 0,20,23,1
 
     return m;
   }
 
   public Maze CreateMap1Maze() {
     final int mazeSize = 50;
-    MazeGame mazeGame = new MazeGame();
+    MazeFactory mazeGame = new MazeFactory();
 
     // create the maze rooms
     List<Room> rooms = new ArrayList<Room>();
