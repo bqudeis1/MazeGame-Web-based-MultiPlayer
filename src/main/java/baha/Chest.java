@@ -1,5 +1,6 @@
 package baha;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import container.Container;
 import items.Item;
@@ -10,8 +11,26 @@ import lockable.Lockable;
 public class Chest extends Container implements MapSite, Lockable {
     private boolean isLocked;
     private String neededKeyName;
+    private final String name="Chest";
+
+
+    public String getName() {
+        return name;
+    }
 
     public Chest() {
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
+
+    public String getNeededKeyName() {
+        return neededKeyName;
+    }
+
+    public void setNeededKeyName(String neededKeyName) {
+        this.neededKeyName = neededKeyName;
     }
 
     @Override
@@ -42,7 +61,7 @@ public class Chest extends Container implements MapSite, Lockable {
         if(key.getName().equals(neededKeyName))
             isLocked = false;
     }
-
+    @JsonIgnore
     @Override
     public String getLockKeyName() {
         return neededKeyName;

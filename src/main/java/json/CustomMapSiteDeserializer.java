@@ -1,9 +1,6 @@
 package json;
 
-import baha.MapSite;
-import baha.Room;
-import baha.Seller;
-import baha.Wall;
+import baha.*;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -29,10 +26,30 @@ public class CustomMapSiteDeserializer extends JsonDeserializer<MapSite> {
       } else {
         if (root.has("name") && root.get("name").asText().equals("Seller")) {
           return mapper.readValue(root.toString(), Seller.class);
-        }
+        } else {
+          if (root.has("name") && root.get("name").asText().equals("Painting")) {
+            return mapper.readValue(root.toString(), Painting.class);
+          } else {
+            if (root.has("name") && root.get("name").asText().equals("Mirror")) {
+              return mapper.readValue(root.toString(), Mirror.class);
+            } else {
+              if (root.has("name") && root.get("name").asText().equals("Chest")) {
+                return mapper.readValue(root.toString(), Chest.class);
+              } else {
+                if (root.has("name") && root.get("name").asText().equals("Ground")) {
+                  return mapper.readValue(root.toString(), Ground.class);
+                } else {
+                  if (root.has("name") && root.get("name").asText().equals("Door")) {
+                    return mapper.readValue(root.toString(), Door.class);
+                  }
 
-        return null;
+                  return null;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
-}
+    }

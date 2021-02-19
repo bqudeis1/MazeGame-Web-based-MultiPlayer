@@ -8,7 +8,12 @@ import java.util.List;
 
 public abstract class Container implements IContainer {
 
-    protected List<Item> itemsContainer;
+    protected List<Item> itemsContainer =new ArrayList<>();
+
+    public List<Item> getItemsContainer() {
+        return itemsContainer;
+    }
+
     @JsonIgnore
     @Override
     public boolean addItem(Item item) {
@@ -24,7 +29,7 @@ public abstract class Container implements IContainer {
     public boolean isEmpty() {
         return itemsContainer.isEmpty();
     }
-
+    @JsonIgnore
     @Override
     public List<Item> getItems() {
         List<Item> copy = new ArrayList<>(itemsContainer);

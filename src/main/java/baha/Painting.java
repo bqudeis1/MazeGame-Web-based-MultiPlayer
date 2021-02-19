@@ -5,9 +5,23 @@ import container.Container;
 import items.Item;
 @JsonDeserialize(as = Painting.class)
 public class Painting extends Container implements MapSite {
-  public int id = 0;
+  private int id = 0;
   private String containsKeyName;
   private Item keyItem;
+  private final String name="Painting";
+
+
+  public String getName() {
+    return name;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
 
   public Painting(){
 

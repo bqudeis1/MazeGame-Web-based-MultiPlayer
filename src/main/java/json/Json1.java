@@ -25,12 +25,14 @@ public class Json1 {
 
     final ObjectMapper mapper = new ObjectMapper();
     File theMapFile = new File("maze.json");
+    String jsonString="";
+    jsonString=mapper.writeValueAsString(maze.getRoomList());
     try{
       mapper.writeValue(theMapFile, maze.getRoomList().toArray());
     }catch (Exception e){
 
     }
-    return mapper.writeValueAsString(maze.getRoomList());
+    return jsonString;
   }
 
   public static void jsonReader() throws IOException {

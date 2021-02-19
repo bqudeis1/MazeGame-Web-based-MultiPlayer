@@ -20,10 +20,33 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
+<div>
+    <form>
+
+        <input type="button" onclick="viewPlayerCommands();" value="Navigation commands" id="Navigation commands">
+        <input type="button" onclick="viewTradeCommands();" value="trade commands" id="Trade">
+        <br>
+        <input type="button" title="TurnLeftCommand" value="turn left" id="TurnLeftCommand" hidden >
+        <input type="button" title="TurnRightCommand" value="turn right" id="TurnRightCommand" hidden >
+        <input type="button" title="ForwardCommand" value="move forward" id="ForwardCommand" hidden >
+        <input type="button" title="BackwardCommand" value="move backward" id="BackwardCommand" hidden >
+        <input type="button" title="PlayerStatusCommand" value="player status" id="PlayerStatusCommand" hidden >
+        <input type="button" title="LookCommand" value="look" id="LookCommand" hidden >
+        <input type="button" title="OpenCommand" value="open" id="OpenCommand" hidden >
+        <input type="button" title="CloseCommand" value="close" id="CloseCommand" hidden >
+        <input type="button" title="CheckCommand" value="check" id="CheckCommand" hidden >
+        <input type="button" title="HelpCommand" value="help" id="HelpCommand" hidden >
+        <input type="button" title="SwitchLightCommand" value="switchLight" id="SwitchLightCommand" hidden >
+        <input type="button" title="UseFlashLightCommand" value="use flash Light" id="UseFlashLightCommand" hidden >
+        <input type="button" title="UseKeyCommand" value="use key" id="UseKeyCommand" hidden >
+        <input type="button" title="SellCommand" value="sell items" id="SellCommand" hidden >
+        <input type="button" title="BuyCommand" value="buy items" id="BuyCommand" hidden >
+        <input type="button" title="ListCommand" value="list seller items" id="ListCommand" hidden >
+        <input type="button" onclick="viewTradeCommands();" title="FinishTrade" value="quit trade" id="FinishTrade" hidden >
+    </form>
+</div>
 <h5>Console</h5>
 <div title="Console" class="console-text">
-    <textarea class="textarea" id="console2" name="console2" rows="6" readonly  >
-    </textarea>
     <textarea class="textarea" id="console" name="console" rows="6"  >
     Player-><%=player.toString()+".\n"+"Player->"%>
 </textarea>
@@ -39,4 +62,5 @@
 <script src="javaS.js"></script>
 <script src="jquery-3.5.1.min.js"></script>
 <script src="requester.js"></script>
+<script type="text/javascript" src="buttons.js"></script>
 </html>

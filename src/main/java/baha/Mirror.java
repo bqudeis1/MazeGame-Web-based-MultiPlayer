@@ -7,6 +7,12 @@ import items.Item;
 public class Mirror extends Container implements MapSite {
   private String containsKeyName;
   private Item keyItem;
+  private final String name="Mirror";
+
+
+  public String getName() {
+    return name;
+  }
 
   public Mirror() {
   }
