@@ -1,8 +1,10 @@
 package baha;
 
 import container.Container;
+import gameContext.GameStatus;
 import items.Gold;
 import player.Player;
+import timer.GameTimer;
 
 import java.rmi.UnexpectedException;
 import java.util.*;
@@ -43,7 +45,7 @@ public class Maze implements Cloneable, Comparator<Maze> {
     }
 
     public int getGameId() {
-        return gameInfo.mazeId;
+        return gameInfo.gameId;
     }
 
     public int getPlayersNumber() {
@@ -59,23 +61,35 @@ public class Maze implements Cloneable, Comparator<Maze> {
     }
 
     public Room getStartingRoom() {
-        if(!startingRooms.isEmpty()){
+        if (!startingRooms.isEmpty()) {
             return startingRooms.iterator().next();
         }
         return null;
     }
 
     @Override
-    public int compare(Maze o1, Maze o2) {
-        Objects.requireNonNull(o1);
-        Objects.requireNonNull(o2);
-        return o1.gameInfo.playersNumber.compareTo(o2.gameInfo.playersNumber);
+    public int compare(Maze maze1, Maze maze2) {
+        Objects.requireNonNull(maze1);
+        Objects.requireNonNull(maze2);
+        boolean gameOneInWaitingMod = maze1.gameInfo.gameStatus.isGameInWaitingMod();
+        boolean gameTwoInWaitingMod = maze1.gameInfo.gameStatus.isGameInWaitingMod();
+
+        if (gameOneInWaitingMod && gameTwoInWaitingMod) {
+            return maze1.gameInfo.playersNumber.compareTo(maze2.gameInfo.playersNumber);
+        } else if (gameOneInWaitingMod) {
+            return 1;
+        } else if (gameTwoInWaitingMod) {
+            return -1;
+        }
+        return maze1.gameInfo.playersNumber.compareTo(maze2.gameInfo.playersNumber);
     }
 
     public void addPlayer(Player player) {
         Objects.requireNonNull(player);
-        gameInfo.playersNumber++;
-        gameInfo.players.put(player.getId(), player);
+        gameInfo.addPlayer(player);
+    }
+    public boolean canAddPlayer(){
+        return (!gameInfo.isGameFull && getGameStatus().isGameInWaitingMod() );
     }
 
     public void removePlayerFromGame(int playerId) {
@@ -105,14 +119,22 @@ public class Maze implements Cloneable, Comparator<Maze> {
         return gameInfo.players.get(playerId);
     }
 
+    public GameStatus getGameStatus() {
+        //clone the object and return the clone -> u dot need other objects to change game status.
+        return gameInfo.gameStatus;
+    }
+
     private class GameInfo {
-        private final int mazeId;
+        private final int gameId;
+        private final Hashtable<Integer, Player> players = new Hashtable<Integer, Player>();
         private Integer playersNumber;
         private boolean isGameFull;
-        private final Hashtable<Integer, Player> players = new Hashtable<Integer, Player>();
+        private GameStatus gameStatus;
+
 
         public GameInfo() {
-            mazeId = generateRandomMazeId();
+            gameStatus = new GameStatus(GameTimer.getInstance());
+            gameId = generateRandomMazeId();
         }
 
         private synchronized int generateRandomMazeId() {
@@ -130,10 +152,19 @@ public class Maze implements Cloneable, Comparator<Maze> {
             return player;
         }
 
-        private void addPlayer(Player player) {
-            Objects.requireNonNull(player);
-            players.put(player.getId(), player);
-            playersNumber = players.size();//you may need to remove this variable.
+        private synchronized void addPlayer(Player player) {
+            if (gameStatus.isGameStart()) {
+                throw new IndexOutOfBoundsException();
+            } else if (gameStatus.isGameFinished()) {
+                throw new IndexOutOfBoundsException();
+            }
+            if (!isGameFull && gameStatus.isGameInWaitingMod()) {
+                player.setGameId(gameId);
+                player.setCurrentRoom(getStartingRoom());
+                players.put(player.getId(), player);
+                playersNumber = players.size();//you may need to remove this variable.
+                isGameFull = playersNumber == 4;
+            }
         }
     }
     //TODO: here u need to implement the hasCode method

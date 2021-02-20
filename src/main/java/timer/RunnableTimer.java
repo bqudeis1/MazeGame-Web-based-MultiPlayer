@@ -3,23 +3,17 @@ package timer;
 import gameContext.GameStatus;
 
 public class RunnableTimer implements Runnable {
-  private final GameTimer time;
-  private boolean isTimeOut = false;
+    private final GameTimer time = GameTimer.getInstance();
 
-  public RunnableTimer(GameTimer time) {
-    this.time = time;
-  }
-
-  @Override
-  public void run() {
-    while (!isTimeOut) {
-      try {
-        Thread.sleep(1000);
-        time.setTime(time.getTime() - 1);
-        isTimeOut = GameStatus.GameStatusInstance.isGameFinished();
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                Thread.sleep(1000);
+                time.setTime(time.getTime() + 1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
-  }
 }

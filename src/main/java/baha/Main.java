@@ -1,6 +1,7 @@
 package baha;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import timer.RunnableTimer;
 
 public class Main {
 
@@ -10,5 +11,6 @@ public class Main {
     // write your code here
     // standardPlayerCommand.processCommand("forwardCommand");
     // standardPlayerCommand.processCommand("backwardCommand");
+    new Thread(new RunnableTimer()).start();
   }
 }

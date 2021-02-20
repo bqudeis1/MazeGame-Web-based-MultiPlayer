@@ -1,23 +1,40 @@
 package timer;
 
-import gameContext.GameStatus;
+import javax.jms.IllegalStateException;
+import java.util.Observable;
 
 // singleton
-public class GameTimer {
-  private long time;
-
-  public GameTimer(long time) {
-    this.time = time;
-  }
-
-  public long getTime() {
-    return time;
-  }
-
-  public void setTime(long time) {
-    this.time = time;
-    if (time == 0) {
-      GameStatus.GameStatusInstance.setGameFinished(true);
+public class GameTimer extends Observable {
+    private static GameTimer instance;
+    private long time = 0;
+    static {
+        new Thread(new RunnableTimer()).start();
     }
-  }
+
+    private GameTimer() {//throw exception here
+
+    }
+
+    public static synchronized GameTimer getInstance() {
+        if (instance == null) {
+            synchronized (GameTimer.class) {
+                if (instance == null) {
+                    instance = new GameTimer();
+                }
+            }
+        }
+        return instance;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+        setChanged();
+        notifyObservers();
+
+    }
+
 }

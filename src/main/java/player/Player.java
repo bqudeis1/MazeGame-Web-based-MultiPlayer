@@ -204,6 +204,7 @@ public class Player extends Container implements Observer, Comparator<Player> {
                 ", name='" + name + '\'' +
                 ", direction=" + direction +
                 ", currentRoom=" + currentRoom +
+                ", GameCode=" + gameId +
                 '}';
     }
 

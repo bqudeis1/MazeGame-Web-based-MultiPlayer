@@ -1,35 +1,62 @@
 package gameContext;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
+import timer.GameTimer;
 
-public enum GameStatus implements Observable {
-  GameStatusInstance;
-  boolean isGameFinished = false;
+import java.util.Observable;
+import java.util.Observer;
 
-  public boolean isGameFinished() {
-    return isGameFinished;
-  }
+public class GameStatus implements Observer {
+    private GameTimer gameTimerObservable;
 
-  public synchronized void setGameFinished(boolean gameFinished) {
-    this.isGameFinished = gameFinished;
-  }
+    private long gameStartingTime;
+    private long waitingTime = 60;
+    private long gameDuration = 1200;//in sec
 
-  @Override
-  public void addListener(InvalidationListener listener) {}
+    public boolean isGameStart() {
+        return isGameStart;
+    }
 
-  @Override
-  public void removeListener(InvalidationListener listener) {}
+    public void setGameStart(boolean gameStart) {
+        isGameStart = gameStart;
+    }
+
+    public boolean isGameInWaitingMod() {
+        return isGameInWaitingMod;
+    }
+
+    public void setGameInWaitingMod(boolean gameInWaitingMod) {
+        isGameInWaitingMod = gameInWaitingMod;
+    }
+
+    public void setGameFinished(boolean gameFinished) {
+        isGameFinished = gameFinished;
+    }
+
+    boolean isGameStart;
+    boolean isGameInWaitingMod;
+    private boolean isGameFinished;
+    public GameStatus(Observable observable) {
+        this.gameTimerObservable = (GameTimer) observable;
+        observable.addObserver(this);
+        gameStartingTime = GameTimer.getInstance().getTime();
+        isGameInWaitingMod = true;
+    }
+
+    public boolean isGameFinished() {
+        return isGameFinished;
+    }
+
+
+    @Override
+    public void update(Observable o, Object arg) {
+        long temp = gameTimerObservable.getTime() - gameStartingTime;
+        if (temp >= waitingTime) {
+            isGameStart = true;
+            isGameInWaitingMod = false;
+        }
+        if (temp >= gameDuration) {
+            isGameFinished = true;
+            gameTimerObservable.deleteObserver(this);
+        }
+    }
 }
-// object player1{
-   // R//oom currentRoom;
-
-    // move(){
-        // door
-        // if room has player fight
-        // if not currentRoom =maze.getRoom
-        // }
-// }
-// object player2{
-//        Room currentRoom;
-//        }

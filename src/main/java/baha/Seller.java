@@ -7,7 +7,6 @@ import items.Item;
 import java.util.List;
 
 public class Seller extends Container implements MapSite {
-    private final int id = 0;
 
     public Gold getGold() {
         return gold;

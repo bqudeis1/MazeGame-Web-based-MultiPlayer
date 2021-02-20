@@ -9,7 +9,6 @@ import java.util.Observer;
 public class Room implements MapSite, Observer {
     private final int roomNo;
     private final MapSite[] mapSites = new MapSite[5];
-    int playerDirection = 0;
     private boolean LightsOn;
     private boolean roomLightPrevState = true;
     private boolean switchLightExists;
@@ -60,7 +59,6 @@ public class Room implements MapSite, Observer {
         return "Room{" +
                 "roomNo=" + roomNo +
                 ", mapSites=" + Arrays.toString(mapSites) +
-                ", playerDirection=" + playerDirection +
                 ", dark=" + LightsOn +
                 ", switchLightExists=" + switchLightExists +
                 '}';

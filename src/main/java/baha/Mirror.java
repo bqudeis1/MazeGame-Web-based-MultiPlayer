@@ -4,8 +4,6 @@ import container.Container;
 import items.Item;
 
 public class Mirror extends Container implements MapSite {
-  private String containsKeyName;
-  private Item keyItem;
 
   @Override
   public Object clone() throws CloneNotSupportedException {
