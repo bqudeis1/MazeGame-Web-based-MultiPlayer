@@ -8,7 +8,6 @@ import items.Item;
 import java.util.List;
 @JsonDeserialize(as = Seller.class)
 public class Seller extends Container implements MapSite {
-    private final int id = 0;
 
     public Seller() {
 

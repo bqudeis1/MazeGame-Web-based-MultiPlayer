@@ -1,10 +1,9 @@
-package baha;
+package mapCreator;
 
-import container.Container;
+import baha.Room;
 import items.Gold;
 import player.Player;
 
-import java.rmi.UnexpectedException;
 import java.util.*;
 
 public class Maze implements Cloneable, Comparator<Maze> {

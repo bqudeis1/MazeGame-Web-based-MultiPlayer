@@ -41,6 +41,10 @@ public class Door implements MapSite , Lockable {
         return room2;
     }
 
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
+
     private boolean isOpen() {
         return isOpen;
     }
@@ -76,10 +80,6 @@ public class Door implements MapSite , Lockable {
     @Override
     public String getLockKeyName() {
         return neededKeyName;
-    }
-
-    public void setNameNeededKey(String neededKeyName) {
-        this.neededKeyName = neededKeyName;
     }
 
     public String check() {

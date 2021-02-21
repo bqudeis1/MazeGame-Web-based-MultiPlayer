@@ -5,8 +5,6 @@ import container.Container;
 import items.Item;
 @JsonDeserialize(as = Mirror.class)
 public class Mirror extends Container implements MapSite {
-  private String containsKeyName;
-  private Item keyItem;
   private final String name="Mirror";
 
 

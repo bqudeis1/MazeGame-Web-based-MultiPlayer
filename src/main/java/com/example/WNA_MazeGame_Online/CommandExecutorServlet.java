@@ -1,6 +1,6 @@
 package com.example.WNA_MazeGame_Online;
 
-import baha.Maze;
+import mapCreator.Maze;
 import common.StringOutputFormatter;
 import commands.state_pattern.CommandExecutor;
 

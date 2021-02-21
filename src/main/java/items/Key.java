@@ -8,8 +8,7 @@ public class Key implements Item {
   private  String name = "key";
   private Gold price=new Gold(10);
 
-  public Key() {
-  }
+  public Key() {}
 
   public String getName() {
     return name;
