@@ -1,18 +1,17 @@
 package baha;
 
-import baha.component.Room;
-import commands.state_pattern.CommandExecutor;
-import gameContext.GameStatus;
+import container.Container;
 import items.Gold;
 import player.Player;
 import timer.GameTimer;
 
+import java.rmi.UnexpectedException;
 import java.util.*;
 
 public class Maze implements Cloneable, Comparator<Maze> {
     //TODO builder
     private final GameInfo gameInfo;
-    private final List<Room> roomList = new ArrayList<>();
+    private final List<Room> roomList = new ArrayList<Room>();
     private final Set<Room> startingRooms = new HashSet<>();
     private static final Set<Integer> gamesIds = new HashSet<>();
     private HashMap<Integer, CommandExecutor> commandExecutorHashMap = new HashMap<>();
@@ -36,6 +35,7 @@ public class Maze implements Cloneable, Comparator<Maze> {
     public void addRoom(Room r) {
         if (r != null) roomList.add(r);
     }
+
 
     public int getGameId() {
         return gameInfo.gameId;

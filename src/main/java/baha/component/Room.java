@@ -1,9 +1,8 @@
-package baha.component;
+package baha;
 
-import baha.MapSite;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import items.FlashLight;
-
 import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
@@ -12,7 +11,7 @@ import java.util.Observer;
 public class Room implements MapSite, Observer {
     private final int roomNo;
     private final MapSite[] mapSites = new MapSite[5];
-    int playerDirection = 0;
+
     private boolean LightsOn;
     private boolean roomLightPrevState = true;
     private boolean switchLightExists;
@@ -20,6 +19,9 @@ public class Room implements MapSite, Observer {
 
     public Room() {
         roomNo=-1;
+    }
+    public Room(int n) {
+        roomNo=n;
     }
 
     public String getName() {
@@ -59,6 +61,8 @@ public class Room implements MapSite, Observer {
     public MapSite[] getMapSites() {
         return mapSites;
     }
+    @JsonIgnore
+    public MapSite getMapSite(int index){return mapSites[index];}
 
     public void setMapSites(MapSite mapSite, int side) {
         this.mapSites[side] = mapSite;

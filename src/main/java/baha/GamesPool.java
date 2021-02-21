@@ -1,5 +1,7 @@
 package baha;
 
+import mapCreator.Maze;
+import mapCreator.MazeFactory;
 import player.Player;
 
 import java.util.*;
