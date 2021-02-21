@@ -10,15 +10,37 @@ body, html {
 .console-text {
     position: absolute;
     bottom: 10px;
-    width: 90%;
+    width: 95%;
     border: 3px solid #8AC007;
+    border-radius: 1em;
+    box-shadow: 0 0.75em 3em rgba(50, 50, 50, 0.5);
+    background:linear-gradient(135deg, #0f55e4, #0a3a9c);
+    opacity: .8;
+
+
 
 }
 .textarea{
-    width: 100%;
-    overflow:hidden ;
-    overflow-wrap: break-word;
+    width: 99%;
+    font-style: italic;
+    font-size: larger;
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    border-radius: 1em;
+    box-shadow: 0 0.75em 3em rgba(50, 50, 50, 0.5);
+    color:azure;
+
 
 
 }
 
+textarea::-webkit-scrollbar {
+    width: 1em;
+}
+
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: rebeccapurple;
+    outline: 1px solid slategrey;
+}

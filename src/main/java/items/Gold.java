@@ -1,10 +1,18 @@
 package items;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+@JsonDeserialize(as = Gold.class)
 public class Gold implements Comparable<Gold>, Item {
     private final String name = "Gold";
     private int amount;
     //TODO check if this thread safe.
 
+
+    public Gold() {
+    }
 
     public Gold(int amount) {
         this.amount = amount;
@@ -41,7 +49,7 @@ public class Gold implements Comparable<Gold>, Item {
     public String toString() {
         return amount + name;
     }
-
+    @JsonIgnore
     @Override
     public Gold getPrice() {
         return this;

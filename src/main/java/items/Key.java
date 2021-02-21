@@ -1,10 +1,15 @@
 package items;
 
+import baha.component.Wall;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+@JsonDeserialize(as = Key.class)
 public class Key implements Item {
   private  String name = "key";
-  private Gold price;
+  private Gold price=new Gold(10);
 
-
+  public Key() {
+  }
 
   public String getName() {
     return name;

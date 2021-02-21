@@ -1,7 +1,7 @@
 package baha;
 
 import baha.component.*;
-
+import items.Key;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +10,9 @@ public class MazeFactory {
   public Maze CreateMaze() {
     // maze creation goes here, use builder of factory method.
     MazeFactory mazeGame = new MazeFactory();
-    Room r1 = mazeGame.MakeRoom(1);
-    Room r2 = mazeGame.MakeRoom(2);
-    Room r3 = mazeGame.MakeRoom(3);
+    baha.component.Room r1 = mazeGame.MakeRoom(1);
+    baha.component.Room r2 = mazeGame.MakeRoom(2);
+    baha.component.Room r3 = mazeGame.MakeRoom(3);
     Door d1 = mazeGame.MakeDoor(r1, r2);
     // 1) create rooms
     // 2) create doors
@@ -262,7 +262,74 @@ public class MazeFactory {
     rooms.get(0).setMapSites(d0, 0);
     rooms.get(3).setMapSites(d0, 3);
 
+
+
+
+    //test for json
     Maze myMaze = new Maze();
+    Room walls=mazeGame.MakeRoom(100);
+    Room paintings=mazeGame.MakeRoom(101);
+    Room chests=mazeGame.MakeRoom(102);
+    Room mirrors=mazeGame.MakeRoom(103);
+    Room sellers=mazeGame.MakeRoom(104);
+    Room doors=mazeGame.MakeRoom(105);
+
+    Wall walls0=mazeGame.MakeWall();
+    walls.setMapSites(walls0,0);
+    walls.setMapSites(walls0,1);
+    walls.setMapSites(walls0,2);
+    walls.setMapSites(walls0,3);
+    walls.setMapSites(walls0,4);
+
+    Painting p0=mazeGame.MakePainting();
+    Painting p1=mazeGame.MakePainting();
+    Painting p2=mazeGame.MakePainting();
+    Painting p3=mazeGame.MakePainting();
+    Painting p4=mazeGame.MakePainting();
+    Key keys0=new Key();
+    keys0.setName("dragon improper room key");
+    p0.setKeyItem(keys0);
+    p0.addItem(keys0);
+    paintings.setMapSites(p0,0);
+    paintings.setMapSites(p1,1);
+    paintings.setMapSites(p2,2);
+    paintings.setMapSites(p3,3);
+    paintings.setMapSites(p4,4);
+
+    //Room mirrors=new Room();
+    Mirror m0=mazeGame.MakeMirror();
+    Mirror m1=mazeGame.MakeMirror();
+    Mirror m2=mazeGame.MakeMirror();
+    Mirror m3=mazeGame.MakeMirror();
+    Mirror m4=mazeGame.MakeMirror();
+    mirrors.setMapSites(m0,0);
+    mirrors.setMapSites(m1,1);
+    mirrors.setMapSites(m2,2);
+    mirrors.setMapSites(m3,3);
+    mirrors.setMapSites(m4,4);
+    m0.addItem(keys0);
+
+    //room of chests
+    Chest ch0=mazeGame.MakeChest();
+    Chest ch1=mazeGame.MakeChest();
+    Chest ch2=mazeGame.MakeChest();
+    Chest ch3=mazeGame.MakeChest();
+    Chest ch4=mazeGame.MakeChest();
+    chests.setMapSites(ch0,0);
+    chests.setMapSites(ch1,1);
+    chests.setMapSites(ch2,2);
+    chests.setMapSites(ch3,3);
+    chests.setMapSites(ch4,4);
+    ch0.addItem(keys0);
+
+    myMaze.addRoom(chests);
+    myMaze.addRoom(mirrors);
+    myMaze.addRoom(walls);
+    myMaze.addRoom(paintings);
+
+
+
+
     return myMaze;
   }
   // factory methods.

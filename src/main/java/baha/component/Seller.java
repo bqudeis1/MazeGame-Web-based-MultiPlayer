@@ -1,13 +1,18 @@
 package baha.component;
 
 import baha.MapSite;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import container.Container;
 import items.Gold;
 import items.Item;
 
 import java.util.List;
-
+@JsonDeserialize(as = Seller.class)
 public class Seller extends Container implements MapSite {
+
+    public Seller() {
+
+    }
 
     public Gold getGold() {
         return gold;

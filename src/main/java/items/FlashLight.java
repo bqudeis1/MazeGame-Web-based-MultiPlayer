@@ -1,14 +1,19 @@
 package items;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.Observable;
 import java.util.Observer;
-
+@JsonDeserialize(as = FlashLight.class)
 public class FlashLight extends Observable implements Item {
     private final String name = "FlashLight";
     private boolean status;
-    private Gold price;
+    private Gold price=new Gold(2);
 
     //TODO you may use Close here to create the FlashLight Object.
+
+    public FlashLight() {
+    }
 
     public boolean getStatus() {
         return status;
