@@ -1,6 +1,6 @@
 package commands.tradeCommands;
 
-import baha.Seller;
+import baha.component.Seller;
 import commands.Command;
 import items.Gold;
 import items.Item;

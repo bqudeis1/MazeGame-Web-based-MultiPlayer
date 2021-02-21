@@ -1,5 +1,6 @@
-package baha;
+package baha.component;
 
+import baha.MapSite;
 import container.Container;
 import items.Item;
 

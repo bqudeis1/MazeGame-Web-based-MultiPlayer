@@ -1,6 +1,6 @@
 package commands.standardCommands;
 
-import baha.Room;
+import baha.component.Room;
 import commands.Command;
 import player.Player;
 

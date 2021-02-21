@@ -22,12 +22,13 @@ public class CommandExecutorServlet extends HttpServlet {
         response.getWriter().print(StringOutputFormatter.getResultInAppropriateFormat(request.getParameter("command")));
         Cookie[] cookies=request.getCookies();
         if(cookies.length==3){
-            Maze game=register.gamePool.getGame(Integer.parseInt(cookies[2].getValue()));
+            int gameId=Integer.parseInt(cookies[2].getValue());
+            int playerId=Integer.parseInt(cookies[0].getValue());
+            String commandName=request.getParameter("command");
+            String commandResult=register.gamePool.processCommand(gameId,playerId,commandName);
+            System.out.println(commandResult);
+            response.getWriter().print(commandResult);
 
-            CommandExecutor standardPlayerCommand= new CommandExecutor(
-                    game.getPlayer(Integer.parseInt(cookies[0].getValue())));
-            standardPlayerCommand.processCommand(request.getParameter("command"));
-            //mange to save standardPlayerCommand somewhere
         }
     }
 }

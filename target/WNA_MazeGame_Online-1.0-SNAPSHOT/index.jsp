@@ -11,7 +11,6 @@
     <link rel="shortcut icon" href="#">
 </head>
 <body id="particles-js">
-<script type="text/javascript" src="console.js"></script>
 <audio controls autoplay hidden="hidden" loop="loop">
     <source src="media/gameplay theme.ogg" type="audio/ogg">
     <source src="media/gameplay theme.mp3" type="audio/mpeg">
@@ -28,15 +27,7 @@
     Player-><%=player.toString()+".\n"+"Player->"%>
 </textarea>
 </div>
-<!-- try making textarea a console -->
-
-<!-- end of the console test -->
-<input type="button" value="Show Server Time"
-       onclick='ajaxAsyncRequest("/WNA_MazeGame_Online_war_exploded/hello-servlet")'/>
-
-<a href="hello-servlet">Hello Servlet</a>
 </body>
-<script src="javaS.js"></script>
 <script src="jquery-3.5.1.min.js"></script>
-<script src="requester.js"></script>
+<script src="try.js"></script>
 </html>

@@ -1,6 +1,6 @@
 package commands.standardCommands;
 
-import baha.Door;
+import baha.component.Door;
 import baha.MapSite;
 import commands.Command;
 import player.Player;

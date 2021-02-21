@@ -14,7 +14,7 @@ public class Gold implements Comparable<Gold>, Item {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public synchronized void  setAmount(int amount) {
         this.amount = amount;
     }
 

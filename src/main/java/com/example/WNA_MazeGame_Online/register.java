@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "newGameCreatorServlet", value = "/newGameCreatorServlet")
+@WebServlet(name = "register", value = "/register")
 public class register extends HttpServlet {
     public static GamesPool gamePool = new GamesPool();//this location need to change and this may use singletoon
 

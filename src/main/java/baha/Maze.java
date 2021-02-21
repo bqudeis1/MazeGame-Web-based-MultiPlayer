@@ -1,24 +1,21 @@
 package baha;
 
-import container.Container;
+import baha.component.Room;
+import commands.state_pattern.CommandExecutor;
 import gameContext.GameStatus;
 import items.Gold;
 import player.Player;
 import timer.GameTimer;
 
-import java.rmi.UnexpectedException;
 import java.util.*;
 
 public class Maze implements Cloneable, Comparator<Maze> {
     //TODO builder
     private final GameInfo gameInfo;
-    private final List<Room> roomList = new ArrayList<Room>();
+    private final List<Room> roomList = new ArrayList<>();
     private final Set<Room> startingRooms = new HashSet<>();
-    private static Set<Integer> gamesIds = new HashSet<>();
-
-    public GameInfo getGameInfo() {
-        return gameInfo;
-    }
+    private static final Set<Integer> gamesIds = new HashSet<>();
+    private HashMap<Integer, CommandExecutor> commandExecutorHashMap = new HashMap<>();
 
     public void addStartingRoom(Room r) {
         startingRooms.add(r);
@@ -40,24 +37,8 @@ public class Maze implements Cloneable, Comparator<Maze> {
         if (r != null) roomList.add(r);
     }
 
-    public Room returnRoom(int index) {
-        return roomList.get(index);
-    }
-
     public int getGameId() {
         return gameInfo.gameId;
-    }
-
-    public int getPlayersNumber() {
-        return gameInfo.playersNumber;
-    }
-
-    public Room getRoom(int roomId) {
-        for (Room r : roomList) {
-            if (r.getRoomNo() == roomId)
-                return r;
-        }
-        return null;
     }
 
     public Room getStartingRoom() {
@@ -87,9 +68,15 @@ public class Maze implements Cloneable, Comparator<Maze> {
     public void addPlayer(Player player) {
         Objects.requireNonNull(player);
         gameInfo.addPlayer(player);
+        commandExecutorHashMap.put(player.getId(), new CommandExecutor(player));
     }
-    public boolean canAddPlayer(){
-        return (!gameInfo.isGameFull && getGameStatus().isGameInWaitingMod() );
+
+    public String execute(int playerId, String commandName) {
+        return commandExecutorHashMap.get(playerId).processCommand(commandName);
+    }
+
+    public boolean canAddPlayer() {
+        return (!gameInfo.isGameFull && getGameStatus().isGameInWaitingMod());
     }
 
     public void removePlayerFromGame(int playerId) {
@@ -126,10 +113,10 @@ public class Maze implements Cloneable, Comparator<Maze> {
 
     private class GameInfo {
         private final int gameId;
-        private final Hashtable<Integer, Player> players = new Hashtable<Integer, Player>();
+        private final Hashtable<Integer, Player> players = new Hashtable<>();
         private Integer playersNumber;
         private boolean isGameFull;
-        private GameStatus gameStatus;
+        private final GameStatus gameStatus;
 
 
         public GameInfo() {
@@ -138,7 +125,7 @@ public class Maze implements Cloneable, Comparator<Maze> {
         }
 
         private synchronized int generateRandomMazeId() {
-            int rand = 0;
+            int rand;
             do {
                 rand = 0 + (int) (Math.random() * ((100 - 0) + 1));
             } while (gamesIds.contains(rand));

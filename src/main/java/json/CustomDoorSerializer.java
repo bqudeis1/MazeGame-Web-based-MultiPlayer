@@ -1,6 +1,6 @@
 package json;
 
-import baha.Door;
+import baha.component.Door;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;

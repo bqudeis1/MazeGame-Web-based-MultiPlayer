@@ -1,8 +1,8 @@
 package player;
 
-import baha.Door;
+import baha.component.Door;
 import baha.MapSite;
-import baha.Room;
+import baha.component.Room;
 import common.StringOutputFormatter;
 import checkable.Checkable;
 import container.Container;

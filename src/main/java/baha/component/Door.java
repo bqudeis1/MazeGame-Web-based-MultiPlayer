@@ -1,12 +1,13 @@
-package baha;
+package baha.component;
 
+import baha.MapSite;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import items.Key;
 import json.CustomDoorSerializer;
 import lockable.Lockable;
 
 @JsonSerialize(using = CustomDoorSerializer.class)
-public class Door implements MapSite , Lockable {
+public class Door implements MapSite, Lockable {
     // @Expose(serialize = false, deserialize = true)
     private final Room room1;
     // @Expose(serialize = false, deserialize = true)

@@ -60,11 +60,17 @@ public class GamesPool {
         reservedGames.remove(mazeGame.getGameId());
     }
 
-
     public void removePlayerFromGame(int gameId, int playerId) {
         if (publicGames.containsKey(gameId)) {
             Maze maze = publicGames.get(gameId);
             maze.removePlayerFromGame(playerId);
         }
+    }
+
+    public String processCommand(int gameId ,int playerId,String commandName){
+        if(publicGames.containsKey(gameId)){
+            return publicGames.get(gameId).execute(playerId,commandName);
+        }
+        return "no gameId mach ";
     }
 }

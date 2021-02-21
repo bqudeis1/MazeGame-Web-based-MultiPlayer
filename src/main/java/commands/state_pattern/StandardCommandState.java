@@ -1,7 +1,7 @@
 package commands.state_pattern;
 
 import baha.MapSite;
-import baha.Seller;
+import baha.component.Seller;
 import commands.Command;
 import commands.CommandsSet;
 import commands.standardCommandSet;
@@ -15,6 +15,8 @@ class StandardCommandState implements CommandState {
     public StandardCommandState(CommandExecutor commandExecutor) {
         this.commandExecutor = commandExecutor;
         fillPlayerCommands(standardCommandSet.class);
+        commandExecutor.setState(this);
+
     }
 
     public void fillPlayerCommands(Class<? extends CommandsSet> s) {
@@ -33,9 +35,11 @@ class StandardCommandState implements CommandState {
             if (facingObject instanceof Seller) {
                 commandExecutor.setState(commandExecutor.getTradeCommandsState());
                 return "you start trade.";
-            }
-        }else
-        return "There is no Trader opposite you";
-        return (String) commands.get("commandName").execute();
+            }else
+                return "There is no Trader opposite you";
+        }
+        Command<String,String> command= commands.get(commandName);
+        String result = String.valueOf(command.execute(commandName));
+        return result;
     }
 }

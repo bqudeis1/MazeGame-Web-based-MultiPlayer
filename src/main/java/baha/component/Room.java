@@ -1,5 +1,6 @@
-package baha;
+package baha.component;
 
+import baha.MapSite;
 import items.FlashLight;
 
 import java.util.Arrays;

@@ -1,5 +1,7 @@
 package baha;
 
+import baha.component.*;
+
 import java.util.ArrayList;
 import java.util.List;
 

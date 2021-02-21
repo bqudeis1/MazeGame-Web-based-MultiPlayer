@@ -1,6 +1,5 @@
 package commands.tradeCommands;
 
-import baha.Seller;
 import commands.Command;
 import container.Container;
 import player.Player;

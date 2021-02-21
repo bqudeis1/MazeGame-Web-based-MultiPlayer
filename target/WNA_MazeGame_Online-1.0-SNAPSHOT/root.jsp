@@ -21,7 +21,7 @@
 </audio>
 <h1 class="pageHeader">Root page</h1>
 
-<form method="post" action="newGameCreatorServlet">
+<form method="post" action="register">
 
     <label class="Label">First name:</label><br>
     <input type="text" name="name"><br>

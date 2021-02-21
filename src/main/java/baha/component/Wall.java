@@ -1,4 +1,6 @@
-package baha;
+package baha.component;
+
+import baha.MapSite;
 
 public class Wall implements MapSite {
 
