@@ -4,9 +4,30 @@ import baha.MapSite;
 import container.Container;
 import items.Item;
 
-public class Painting extends Container implements MapSite {
-  public int id = 0;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+@JsonDeserialize(as = Painting.class)
+public class Painting extends Container implements MapSite {
+  private int id = 0;
+
+  private final String name="Painting";
+
+
+  public String getName() {
+    return name;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public Painting(){
+
+  }
 
   public String look() {
     return "Painting";
@@ -23,3 +44,4 @@ public class Painting extends Container implements MapSite {
     return null;
   }
 }
+

@@ -1,5 +1,6 @@
-package baha;
+package baha.component;
 
+import baha.MapSite;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import container.Container;
 @JsonDeserialize(as = Ground.class)

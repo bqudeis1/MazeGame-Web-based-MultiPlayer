@@ -1,7 +1,8 @@
 package mapCreator;
 
-import baha.Door;
-import baha.Room;
+import baha.MazeFactory;
+import baha.component.Door;
+import baha.component.Room;
 import items.Key;
 
 import java.util.HashMap;

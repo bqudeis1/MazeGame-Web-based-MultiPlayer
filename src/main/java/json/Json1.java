@@ -1,9 +1,9 @@
 package json;
 
-import mapCreator.Maze;
-import baha.Room;
+import baha.component.Room;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import baha.Maze;
 
 import java.io.*;
 

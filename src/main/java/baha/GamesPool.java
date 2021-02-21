@@ -1,7 +1,5 @@
 package baha;
 
-import mapCreator.Maze;
-import mapCreator.MazeFactory;
 import player.Player;
 
 import java.util.*;
@@ -14,7 +12,7 @@ public class GamesPool {
 //TODO: refactor this class there is a problem in registerPlayerInRandomGame function.
 //TODO: add commands to player when u create player object.
 
-    public Maze getGame(int gameId) {
+    public baha.Maze getGame(int gameId) {
         return publicGames.get(gameId);
     }
 

@@ -1,8 +1,6 @@
 package baha;
 
 import json.Json1;
-import mapCreator.Maze;
-import mapCreator.MazeFactory;
 
 import java.io.IOException;
 

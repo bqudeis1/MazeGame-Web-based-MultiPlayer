@@ -1,8 +1,6 @@
 package json;
 
 import baha.*;
-import baha.Ground;
-import baha.Painting;
 import baha.component.*;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;

@@ -1,8 +1,6 @@
 package com.example.WNA_MazeGame_Online;
 
-import mapCreator.Maze;
 import common.StringOutputFormatter;
-import commands.state_pattern.CommandExecutor;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

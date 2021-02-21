@@ -1,5 +1,6 @@
-package baha;
+package baha.component;
 
+import baha.MapSite;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import items.FlashLight;
@@ -20,9 +21,7 @@ public class Room implements MapSite, Observer {
     public Room() {
         roomNo=-1;
     }
-    public Room(int n) {
-        roomNo=n;
-    }
+
 
     public String getName() {
         return name;
@@ -79,7 +78,6 @@ public class Room implements MapSite, Observer {
         return "Room{" +
                 "roomNo=" + roomNo +
                 ", mapSites=" + Arrays.toString(mapSites) +
-                ", playerDirection=" + playerDirection +
                 ", dark=" + LightsOn +
                 ", switchLightExists=" + switchLightExists +
                 '}';

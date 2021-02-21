@@ -1,11 +1,14 @@
 package mapCreator;
 
-import baha.Room;
-import baha.Wall;
+
+import baha.MazeFactory;
+import baha.component.Room;
+import baha.component.Wall;
+
 import java.util.List;
 
 public class Map1WallsCreator {
-    public static void createMap1Walls(List<Room> rooms,MazeFactory mazeGame){
+    public static void createMap1Walls(List<Room> rooms, MazeFactory mazeGame){
 
         Wall wall0 = mazeGame.MakeWall();
         rooms.get(0).setMapSites(wall0, 2);

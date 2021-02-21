@@ -1,15 +1,16 @@
 package mapCreator;
 
-import baha.Mirror;
-import baha.Painting;
-import baha.Room;
+
+import baha.MazeFactory;
+import baha.component.Mirror;
+import baha.component.Room;
 import items.Key;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class Map1MirrorsCreator {
-    public static void createMap1Mirrors(List<Room> rooms, MazeFactory mazeGame, HashMap<String,Key> keys){
+    public static void createMap1Mirrors(List<Room> rooms, MazeFactory mazeGame, HashMap<String, Key> keys){
         final int numberOfMirrors=14;
         Mirror[] mirrors=new Mirror[numberOfMirrors];
         for(int i=0;i<numberOfMirrors;i++){

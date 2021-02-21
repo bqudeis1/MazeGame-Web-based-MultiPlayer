@@ -1,8 +1,9 @@
 package mapCreator;
 
-import baha.Chest;
-import baha.Ground;
-import baha.Room;
+
+import baha.MazeFactory;
+import baha.component.Ground;
+import baha.component.Room;
 
 import java.util.List;
 
