@@ -37,7 +37,7 @@ public class Painting extends Container implements MapSite {
 
   @Override
   public String check() {
-    return null;
+    return this.getItemsName() ;
   }
 
   @Override

@@ -17,9 +17,9 @@ public class TradeCommandState implements CommandState {
     }
     public void fillPlayerCommands(Class< ? extends CommandsSet> s)  {
         //TODO: refactor to accept any class.
-        standardCommandSet[] c = standardCommandSet.values();
+        tradeCommandSet[] c = tradeCommandSet.values();
         //EnumSet.allOf(s).forEach(m->commands.put(m.name(),m.createCommand(player)));
-        for (standardCommandSet SCT : c) {
+        for (tradeCommandSet SCT : c) {
             commands.put(SCT.name(), SCT.createCommand(commandExecutor.getPlayer()));
         }
     }
@@ -28,7 +28,9 @@ public class TradeCommandState implements CommandState {
         if(commandName.equals("FinishTrade")){
             commandExecutor.setState(commandExecutor.getStandardCommandsState());
         }
-        return (String) commands.get(commandName).execute();
+        Command<String,String> command= commands.get(commandName);
+        String result = String.valueOf(command.execute(commandName));
+        return result;
     }
 }
 

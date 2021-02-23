@@ -17,8 +17,8 @@ public class Door implements MapSite, Lockable {
     private transient String neededKeyName;
 
     public Door() {
-        room1=new Room(-1);
-        room2=new Room(-1);
+        room1 = new Room(-1);
+        room2 = new Room(-1);
     }
 
     public Door(Room r1, Room r2) { // check r1,r2 is not null
@@ -55,11 +55,11 @@ public class Door implements MapSite, Lockable {
     }
 
     public String close() {
-        if(isOpen){
+        if (isOpen) {
             setOpen(false);
             return "The Door now Closed.";
         }
-            return "The Door already Close.";
+        return "The Door already Closed.";
     }
 
     public boolean isLocked() {
@@ -68,13 +68,15 @@ public class Door implements MapSite, Lockable {
 
     @Override
     public void lock(Key key) {
-        if(key.getName().equals(neededKeyName))
-            isLocked = false;
+        if (key.getName().equals(neededKeyName)) {
+            isLocked = true;
+            isOpen = false;
+        }
     }
 
     @Override
     public void unlock(Key key) {
-        if(key.getName().equals(neededKeyName))
+        if (key.getName().equals(neededKeyName))
             isLocked = false;
     }
 
@@ -87,18 +89,17 @@ public class Door implements MapSite, Lockable {
         if (isLocked) {
             return "Door is locked " + neededKeyName + " needed to unlock";
         }
-        return "Door is Open";
+        String doorStatus = (isOpen) ? "is open" : "is closed";
+        return "Door is unlocked and " + doorStatus;
     }
 
     public String open() {
-        if (!isLocked) {
-            if (isOpen) {
-                return "Door is Open";
-            }
-            isOpen = true;
-            return "Now the door is open";
-        }
-        return "Door is locked " + neededKeyName + " needed to unlock";
+        if (isLocked)
+            return "Door is locked " + neededKeyName + " needed to unlock";
+        if (isOpen)
+            return "Door is already Open";
+        isOpen = true;
+        return "Now the door is open";
     }
 
     @Override
@@ -108,9 +109,9 @@ public class Door implements MapSite, Lockable {
 
     @Override
     public String toString() {
-        String doorLockStatus=isLocked?"locked":"unlocked";
-        String doorClosedStatus=isOpen?"open":"closed";
-        return "this door links between Room "+room1.getRoomNo()+" and "+room2.getRoomNo()
-                +".\nthis door is "+doorLockStatus +" and "+doorClosedStatus+".\n";
+        String doorLockStatus = isLocked ? "locked" : "unlocked";
+        String doorClosedStatus = isOpen ? "open" : "closed";
+        return "this door links between Room " + room1.getRoomNo() + " and " + room2.getRoomNo()
+                + ".\nthis door is " + doorLockStatus + " and " + doorClosedStatus + ".\n";
     }
 }

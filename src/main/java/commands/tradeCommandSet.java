@@ -6,13 +6,13 @@ import commands.tradeCommands.SellCommand;
 import player.Player;
 
 public enum tradeCommandSet implements CommandsSet {
-    sellCommand("sell") {
+    sell("sell") {
         @Override
         public Command createCommand(Player p) { return new SellCommand(p); }
-    },buyCommand("buy") {
+    },buy("buy") {
         @Override
         public Command createCommand(Player p) { return new BuyCommand(p); }
-    },listCommand("List") {
+    },list("list") {
         @Override
         public Command createCommand(Player p) { return new ListCommand(p); }
     };

@@ -120,24 +120,8 @@ public class Maze implements Cloneable, Comparator<Maze> {
         return result;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        final Maze other = (Maze) obj;
-        if (gameInfo == null) {
-            if (other.gameInfo != null)
-                return false;
-        } else if (!gameInfo.equals(other.gameInfo))
-            return false;
-        return true;
-    }
 
-    private class GameInfo {
+    private class GameInfo implements Observer {
         private final int gameId;
         private final Hashtable<Integer, Player> players = new Hashtable<>();
         private Integer playersNumber;
@@ -177,6 +161,7 @@ public class Maze implements Cloneable, Comparator<Maze> {
                 players.put(player.getId(), player);
                 playersNumber = players.size();//you may need to remove this variable.
                 isGameFull = playersNumber == 4;
+                player.addObserver(gameStatus);
             }
         }
 
@@ -198,11 +183,20 @@ public class Maze implements Cloneable, Comparator<Maze> {
                 return false;
             final GameInfo other = (GameInfo) obj;
             if (gameInfo == null) {
-                    return false;
-            } else return gameId==other.gameId;
+                return false;
+            } else return gameId == other.gameId;
         }
 
 
+        @Override
+        public void update(Observable o, Object arg) {
+            if (o instanceof Player) {
+                Player p = (Player) o;
+                gameStatus.setGameResult(p.getName());
+                gameStatus.setGameFinished(true);
+                o.deleteObserver(this);
+            }
+        }
     }
     //TODO: here u need to implement the hasCode method
 }

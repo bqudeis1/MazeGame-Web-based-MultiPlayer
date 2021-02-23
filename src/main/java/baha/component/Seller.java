@@ -39,7 +39,9 @@ public class Seller extends Container implements MapSite {
 
     @Override
     public String check() {
-        return null;
+        //TODO:
+
+        return "seller can't be checked";
     }
 
     @Override

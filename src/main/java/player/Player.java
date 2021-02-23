@@ -3,6 +3,8 @@ package player;
 import baha.component.Door;
 import baha.MapSite;
 import baha.component.Room;
+import baha.component.Seller;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import common.StringOutputFormatter;
 import checkable.Checkable;
 import container.Container;
@@ -10,12 +12,18 @@ import container.IContainer;
 import items.FlashLight;
 import items.Gold;
 import items.Item;
+
 import java.util.*;
 
-public class Player extends Container implements Observer, Comparator<Player> {
+public class Player extends Observable implements Observer, Comparator<Player>, IContainer {
     //TODO consider using builder to create player Object.
     private final List<Item> playerItems = new ArrayList<>();
     private final Gold goldAmount = new Gold(30);
+
+    public String getName() {
+        return name;
+    }
+
     private final String name;
     private Direction direction = Direction.east;
     private int currentDirectionAsInt = 0;
@@ -23,6 +31,7 @@ public class Player extends Container implements Observer, Comparator<Player> {
     private final int id;
     private int gameId;
     private static Set<Integer> playerIds = new HashSet<>();
+
 
 
     public Gold getGoldAmount() {
@@ -49,9 +58,13 @@ public class Player extends Container implements Observer, Comparator<Player> {
     public String forward() {
         //TODO refactor this contain doublect code ordinal.
         if (getFacingObject() instanceof Door
-                && !((Door) getFacingObject()).isLocked()) {
+                && !((Door) getFacingObject()).isLocked()) {//TODO check if door is closed
             Door d = (Door) getFacingObject();
             currentRoomChanged(d);
+            if (currentRoom.isWiningRoom()) {
+                setChanged();
+                notifyObservers();
+            }
             return "you are in room " + currentRoom.getRoomNo();
         }
         return "there is no door or door is locked";
@@ -61,11 +74,17 @@ public class Player extends Container implements Observer, Comparator<Player> {
     }
 
     private void currentRoomChanged(Door d) {
+        if(currentRoom==d.getRoom1()){
         ExitCurrentRoom();
-        Room nextRoom=d.getRoom2();
+        Room nextRoom = d.getRoom2();
         currentRoom = d.getRoom2();
         //check if player in the room here and start the fight.
         enterNewRoom();
+        }else{
+            ExitCurrentRoom();
+            Room nextRoom = d.getRoom1();
+            currentRoom = d.getRoom1();
+        }
     }
 
     private void ExitCurrentRoom() {
@@ -84,10 +103,11 @@ public class Player extends Container implements Observer, Comparator<Player> {
         return "Room dose not have light";
     }
 
-    private void Fight(Player player){
-     player.compare(player,player);
+    private void Fight(Player player) {
+        player.compare(player, player);
 
     }
+
     private void enterNewRoom() {
         playerItems.forEach(item -> {
             if (item instanceof FlashLight) {
@@ -103,6 +123,10 @@ public class Player extends Container implements Observer, Comparator<Player> {
                 && !((Door) getFacingObject()).isLocked()) {
             Door d = (Door) getFacingObject();
             currentRoom = d.getRoom2();
+            if (currentRoom.isWiningRoom()) {
+                setChanged();
+                notifyObservers();
+            }
             return "you are in room " + currentRoom.getRoomNo();
         }
         return "there is no door or door is locked";
@@ -148,7 +172,7 @@ public class Player extends Container implements Observer, Comparator<Player> {
         //better replace what player facing function with variable.
         if (!currentRoom.isLightsOn()) {
             MapSite facingObject = getFacingObject();
-            if (facingObject instanceof Checkable) {
+            if (facingObject instanceof Checkable && !(facingObject instanceof Seller)) {
                 String CheckResultAsAString = ((Checkable) facingObject).check();
                 if (facingObject instanceof IContainer) {
                     Container container = (Container) facingObject;
@@ -200,12 +224,12 @@ public class Player extends Container implements Observer, Comparator<Player> {
     @Override
     public String toString() {
         return
-                " name: " + name + "\n" +
-                "playerItems=" + playerItems +"\n"+
-                " direction: " + direction +
-                ", goldAmount: " + goldAmount +
-                ", GameCode \"" + gameId +"\"\n"+
-                '}'+"\n"+currentRoom.RoomInfo();
+                "name: " + name + "\n" +
+                        "playerItems=" + playerItems + "\n" +
+                        "direction: " + direction +
+                        "goldAmount: " + goldAmount +
+                        ", GameCode \"" + gameId + "\"" +
+                          "\n" + currentRoom.RoomInfo();
     }
 
     @Override
@@ -216,9 +240,10 @@ public class Player extends Container implements Observer, Comparator<Player> {
     }
 
     public void putItemsOnGround() {
-        Container container= (Container) currentRoom.getMapSites()[5];
+        Container container = (Container) currentRoom.getMapSites()[5];
         container.addItems(playerItems);
     }
+
     private synchronized int generateRandomPlayerId() {
         int rand = 0;
         do {
@@ -226,5 +251,70 @@ public class Player extends Container implements Observer, Comparator<Player> {
         } while (playerIds.contains(rand));
         playerIds.add(rand);
         return rand;
+    }
+
+
+    public List<Item> getItemsContainer() {
+        return playerItems;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean addItem(Item item) {
+        return playerItems.add(item);
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean addItems(List<Item> items) {
+        return playerItems.addAll(items);
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isEmpty() {
+        return playerItems.isEmpty();
+    }
+
+    @JsonIgnore
+    @Override
+    public List<Item> getItems() {
+        List<Item> copy = new ArrayList<>(playerItems);
+        playerItems.clear();
+        return copy;
+    }
+
+    @JsonIgnore
+    @Override
+    public String getItemsName() {
+        if (!isEmpty()) {
+            StringBuilder itemsName = new StringBuilder("you Found: ");
+            for (Item item : playerItems) {
+                itemsName.append(item.getName()).append("\n");
+            }
+            return itemsName.append(".").toString();
+        }
+        return "Nothing found in " + getClass().getSimpleName();
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean containItemName(String itemName) {
+        return playerItems.stream()
+                .anyMatch(item -> item.getName().equals(itemName));
+    }
+
+    @JsonIgnore
+    @Override
+    public Item get(String itemName) {
+        return playerItems.stream()
+                .filter(item -> itemName.equals(item.getName()))
+                .findAny()
+                .orElse(null);
+    }
+
+    @Override
+    public synchronized void addObserver(Observer o) {
+        super.addObserver(o);
     }
 }

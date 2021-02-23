@@ -4,9 +4,8 @@ import baha.MapSite;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import items.FlashLight;
-import java.util.Arrays;
-import java.util.Observable;
-import java.util.Observer;
+
+import java.util.*;
 
 @JsonDeserialize(as = Room.class)
 public class Room implements MapSite, Observer {
@@ -15,10 +14,15 @@ public class Room implements MapSite, Observer {
     private boolean lightsOn;
     private boolean roomLightPrevState = true;
     private boolean switchLightExists;
-    private String name="Room";
+    private String name = "Room";
+    public static Set<Integer> winningRoomsIds = new HashSet<>();
 
     public Room() {
-        roomNo=-1;
+        roomNo = -1;
+    }
+
+    public boolean isWiningRoom() {
+        return winningRoomsIds.contains(roomNo);
     }
 
     public String getName() {
@@ -58,8 +62,11 @@ public class Room implements MapSite, Observer {
     public MapSite[] getMapSites() {
         return mapSites;
     }
+
     @JsonIgnore
-    public MapSite getMapSite(int index){return mapSites[index];}
+    public MapSite getMapSite(int index) {
+        return mapSites[index];
+    }
 
     public void setMapSites(MapSite mapSite, int side) {
         this.mapSites[side] = mapSite;
@@ -80,10 +87,10 @@ public class Room implements MapSite, Observer {
                 '}';
     }
 
-    public String RoomInfo(){
-        String lightStatus=isLightsOn()?" lit.\n":" dark.\n";
-        String switchLightStatus=isSwitchLightExists()?"switch light exist.\n":"switch light doesn't exist.\n";
-        return "you are in room number "+roomNo+".\nthis room is "+lightStatus+" and "+switchLightStatus+".";
+    public String RoomInfo() {
+        String lightStatus = isLightsOn() ? " lit." : " dark.";
+        String switchLightStatus = isSwitchLightExists() ? "switch light exist." : "switch light doesn't exist.";
+        return "you are in room number " + roomNo + ".\nthis room is " + lightStatus + " and " + switchLightStatus;
     }
 
     @Override

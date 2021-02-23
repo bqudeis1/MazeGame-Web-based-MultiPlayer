@@ -26,7 +26,7 @@ public class HelpCommand implements Command<String, String> {
         commandsSet += "switchLight\n";
         commandsSet += "time left\n";
         commandsSet += "help\n";
-        commandsSet += "quitGame\n";
+        commandsSet += "quitGame";
 
         return commandsSet;
     }

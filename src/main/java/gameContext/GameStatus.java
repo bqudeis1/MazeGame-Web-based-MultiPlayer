@@ -6,15 +6,18 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class GameStatus implements Observer {
-
     private transient GameTimer gameTimerObservable;
-
     private transient long gameStartingTime;
-    private long waitingTime = 10;//rewrite it to 60 sec.
-    private long gameDuration = 15;//in sec
+    private long waitingTime = 3;//rewrite it to 60 sec.
+    private long gameDuration = 60*60;//in sec
     boolean isGameStart;
     boolean isGameInWaitingMod;
     private boolean isGameFinished;
+
+    public void setGameResult(String gameResult) {
+        GameResult = gameResult;
+    }
+
     private String GameResult;
 
     public long getWaitingTime() {
@@ -64,12 +67,12 @@ public class GameStatus implements Observer {
                 setGameStart(true);
             }
         }
-        if (isGameStart) {
+        if (isGameStart && gameDuration != 0) {
             gameDuration--;
             if (gameDuration == 0) {
                 setGameFinished(true);
                 o.deleteObserver(this);
-                GameResult="Time Over No Winner";
+                GameResult = "Time Over No Winner";
             }
         }
     }

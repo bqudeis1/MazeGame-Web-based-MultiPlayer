@@ -1,6 +1,7 @@
 $(function () {
     $("#console").on('keypress', function (e) {
         const playerWord = "Player->";
+        debugger;
         const code = (e.keyCode ? e.keyCode : e.which);
         if (code === 13) {
             const textAreaContent = $('#console').val();
@@ -10,8 +11,8 @@ $(function () {
                     command: messageToServer,
                 },
                 function (data, status) {
-                    $('#console').val(textAreaContent + data + "\n");
-                    alert("Data: " + data + "\nStatus: " + status);
+                    $('#console').val($('#console').val() +"\n"+ data + "\n");
+                    alert("Dataa: " + data + "\nStatus: " + status);
                 });
             return true;
         }
@@ -48,9 +49,9 @@ function gameFinished() {
         type: "GET",
         dataType: "json", //Specify response type from server
         success: function (result) {
-            debugger;
+
             if (result.isGameFinished === true) {
-                $('#console').val("\n Game Over bitch." + "\n");
+                $('#console').val("\n Game Over bitch." );
                 clearInterval(gameFinished);
             }
         },

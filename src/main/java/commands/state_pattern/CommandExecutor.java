@@ -25,7 +25,7 @@ public class CommandExecutor {
         return TradeCommandsState;
     }
     public String processCommand(String commandName) {
-        return (String) currentCommandsState.processCommand(commandName);
+        return currentCommandsState.processCommand(commandName);
     }
 
     protected void setState(CommandState commandState) {

@@ -17,7 +17,7 @@ public class GamesPool {
     }
 
     public Player registerPlayerInNewGame(String playerName) {
-        Maze game = MAZE_FACTORY.CreateMaze();
+        Maze game = MAZE_FACTORY.CreateMap1Maze();
         int gameId = game.getGameId();
         reservedGames.put(gameId, game);
         return registerPlayerInGame(playerName, gameId);
