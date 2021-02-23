@@ -10,7 +10,6 @@ import container.IContainer;
 import items.FlashLight;
 import items.Gold;
 import items.Item;
-
 import java.util.*;
 
 public class Player extends Container implements Observer, Comparator<Player> {
@@ -23,6 +22,8 @@ public class Player extends Container implements Observer, Comparator<Player> {
     private Room currentRoom;
     private final int id;
     private int gameId;
+    private static Set<Integer> playerIds = new HashSet<>();
+
 
     public Gold getGoldAmount() {
         return goldAmount;
@@ -42,7 +43,7 @@ public class Player extends Container implements Observer, Comparator<Player> {
 
     public Player(String playerName) {
         name = playerName;
-        id = 0;//generat random id
+        id = generateRandomPlayerId();//generat random id
     }
 
     public String forward() {
@@ -198,14 +199,13 @@ public class Player extends Container implements Observer, Comparator<Player> {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "playerItems=" + playerItems +
-                ", goldAmount=" + goldAmount +
-                ", name='" + name + '\'' +
-                ", direction=" + direction +
-                ", currentRoom=" + currentRoom +
-                ", GameCode=" + gameId +
-                '}';
+        return
+                " name: " + name + "\n" +
+                "playerItems=" + playerItems +"\n"+
+                " direction: " + direction +
+                ", goldAmount: " + goldAmount +
+                ", GameCode \"" + gameId +"\"\n"+
+                '}'+"\n"+currentRoom.RoomInfo();
     }
 
     @Override
@@ -218,5 +218,13 @@ public class Player extends Container implements Observer, Comparator<Player> {
     public void putItemsOnGround() {
         Container container= (Container) currentRoom.getMapSites()[5];
         container.addItems(playerItems);
+    }
+    private synchronized int generateRandomPlayerId() {
+        int rand = 0;
+        do {
+            rand = (int) (Math.random() * ((10000 - 0) + 1));
+        } while (playerIds.contains(rand));
+        playerIds.add(rand);
+        return rand;
     }
 }

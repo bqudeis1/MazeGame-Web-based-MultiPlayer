@@ -37,4 +37,8 @@ public class GameTimer extends Observable {
 
     }
 
+    @Override
+    public String toString() {
+        return "time left -> "+time/(3600)+":"+(time%3600)/60+":"+(time%60);
+    }
 }

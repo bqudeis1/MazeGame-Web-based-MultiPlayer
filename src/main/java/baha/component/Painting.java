@@ -10,8 +10,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 public class Painting extends Container implements MapSite {
   private int id = 0;
 
-  private final String name="Painting";
-
+  private final String name = "Painting";
 
   public String getName() {
     return name;
@@ -25,9 +24,7 @@ public class Painting extends Container implements MapSite {
     this.id = id;
   }
 
-  public Painting(){
-
-  }
+  public Painting() {}
 
   public String look() {
     return "Painting";
@@ -38,10 +35,17 @@ public class Painting extends Container implements MapSite {
     return null;
   }
 
-
   @Override
   public String check() {
     return null;
   }
-}
 
+  @Override
+  public String toString() {
+    String paintingInfo = "";
+    for (Item item : itemsContainer) {
+      paintingInfo = "this painting contains " + item.getName()+".\n";
+    }
+    return paintingInfo;
+  }
+}

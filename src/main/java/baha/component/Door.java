@@ -106,4 +106,11 @@ public class Door implements MapSite, Lockable {
         return null;
     }
 
+    @Override
+    public String toString() {
+        String doorLockStatus=isLocked?"locked":"unlocked";
+        String doorClosedStatus=isOpen?"open":"closed";
+        return "this door links between Room "+room1.getRoomNo()+" and "+room2.getRoomNo()
+                +".\nthis door is "+doorLockStatus +" and "+doorClosedStatus+".\n";
+    }
 }

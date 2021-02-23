@@ -1,12 +1,10 @@
 package container;
 
 import checkable.Checkable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import items.Item;
-
 import java.util.ArrayList;
 import java.util.List;
-
+//@JsonDeserialize(using = CustomMapSiteDeserializer.class)
 public interface IContainer extends Checkable {
      boolean addItem(Item item);
      List<Item> getItems();

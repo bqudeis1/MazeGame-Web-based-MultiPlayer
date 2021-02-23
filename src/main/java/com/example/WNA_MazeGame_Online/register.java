@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Observable;
 
 @WebServlet(name = "register", value = "/register")
 public class register extends HttpServlet {
@@ -19,6 +20,53 @@ public class register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        //response when the game start
+        //while (){
+        //gamePool.getGame(12).getGameStatus().isGameStart();
+        //wait(1000);
+        //}
+        //response game started
+
+        //gameFinish
+        //wait(time duration/2)
+        //response
+
+
+        //getGameStatus
+
+        //when gameStatusGange
+        //respose
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         String playerName = request.getParameter("name");
         Player player = null;

@@ -3,20 +3,15 @@ package baha.component;
 import baha.MapSite;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import items.Item;
 
 @JsonDeserialize(as = Wall.class)
 public class Wall implements MapSite {
 
-
   private int id = 0;
-  private final String name="Wall";
+  private final String name = "Wall";
 
-  public Wall() {
-  }
-
-//  public void setName(String name) {
-//    this.name = name;
-//  }
+  public Wall() {}
 
   public int getId() {
     return id;
@@ -33,5 +28,11 @@ public class Wall implements MapSite {
   @Override
   public Object clone() throws CloneNotSupportedException {
     return null;
+  }
+
+  @Override
+  public String toString() {
+
+    return "this is just a plain wall. \n";
   }
 }

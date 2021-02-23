@@ -12,8 +12,7 @@ import java.util.Observer;
 public class Room implements MapSite, Observer {
     private final int roomNo;
     private final MapSite[] mapSites = new MapSite[5];
-
-    private boolean LightsOn;
+    private boolean lightsOn;
     private boolean roomLightPrevState = true;
     private boolean switchLightExists;
     private String name="Room";
@@ -21,7 +20,6 @@ public class Room implements MapSite, Observer {
     public Room() {
         roomNo=-1;
     }
-
 
     public String getName() {
         return name;
@@ -40,11 +38,11 @@ public class Room implements MapSite, Observer {
     }
 
     public boolean isLightsOn() {
-        return LightsOn;
+        return lightsOn;
     }
 
     public void setLightsOn(boolean lightsState) {
-        this.LightsOn = lightsState;
+        this.lightsOn = lightsState;
     }
 
     public void switchLight() {
@@ -72,22 +70,27 @@ public class Room implements MapSite, Observer {
         return null;
     }
 
-
     @Override
     public String toString() {
         return "Room{" +
                 "roomNo=" + roomNo +
                 ", mapSites=" + Arrays.toString(mapSites) +
-                ", dark=" + LightsOn +
+                ", dark=" + lightsOn +
                 ", switchLightExists=" + switchLightExists +
                 '}';
+    }
+
+    public String RoomInfo(){
+        String lightStatus=isLightsOn()?" lit.\n":" dark.\n";
+        String switchLightStatus=isSwitchLightExists()?"switch light exist.\n":"switch light doesn't exist.\n";
+        return "you are in room number "+roomNo+".\nthis room is "+lightStatus+" and "+switchLightStatus+".";
     }
 
     @Override
     public void update(Observable o, Object arg) {
         if (o instanceof FlashLight) {
             boolean isFlashOn = ((FlashLight) o).getStatus();
-            LightsOn = isFlashOn || roomLightPrevState;
+            lightsOn = isFlashOn || roomLightPrevState;
         }
     }
 }
