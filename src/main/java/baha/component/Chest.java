@@ -68,4 +68,13 @@ public class Chest extends Container implements MapSite, Lockable {
         return neededKeyName;
     }
 
+    @Override
+    public String toString() {
+        String lock=isLocked?" is locked ":" unlocked ";
+        String items;
+        for(Item item : itemsContainer) {
+            items="this chest contains "+item.getName();
+        }
+        return name+lock+"\nneeded key name to lock/unlock: "+neededKeyName+".\n";
+    }
 }

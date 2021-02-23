@@ -9,6 +9,7 @@ import items.Item;
 import java.util.List;
 @JsonDeserialize(as = Seller.class)
 public class Seller extends Container implements MapSite {
+    private Gold gold;
 
     public Seller() {
 
@@ -17,8 +18,6 @@ public class Seller extends Container implements MapSite {
     public Gold getGold() {
         return gold;
     }
-
-    private Gold gold;
 
     public void decreaseSellerGold(Gold gold) {
         gold.decreaseGold(gold);
@@ -41,5 +40,14 @@ public class Seller extends Container implements MapSite {
     @Override
     public String check() {
         return null;
+    }
+
+    @Override
+    public String toString() {
+        String sellerInfo="";
+        for(Item item : itemsContainer) {
+            sellerInfo="this seller have "+item.getName()+" for "+item.getPrice().getAmount()+" golds.\n";
+        }
+        return sellerInfo;
     }
 }

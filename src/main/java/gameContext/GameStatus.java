@@ -7,10 +7,9 @@ import java.util.Observer;
 
 public class GameStatus implements Observer {
     private GameTimer gameTimerObservable;
-
     private long gameStartingTime;
     private long waitingTime = 60;
-    private long gameDuration = 1200;//in sec
+    private long gameDuration = 20*60;//in sec
 
     public boolean isGameStart() {
         return isGameStart;

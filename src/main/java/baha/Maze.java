@@ -37,7 +37,6 @@ public class Maze implements Cloneable, Comparator<Maze> {
         if (r != null) roomList.add(r);
     }
 
-
     public int getGameId() {
         return gameInfo.gameId;
     }
@@ -112,6 +111,32 @@ public class Maze implements Cloneable, Comparator<Maze> {
         return gameInfo.gameStatus;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result
+                + ((gameInfo == null) ? 0 : gameInfo.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        final Maze other = (Maze) obj;
+        if (gameInfo == null) {
+            if (other.gameInfo != null)
+                return false;
+        } else if (!gameInfo.equals(other.gameInfo))
+            return false;
+        return true;
+    }
+
     private class GameInfo {
         private final int gameId;
         private final Hashtable<Integer, Player> players = new Hashtable<>();
@@ -154,6 +179,30 @@ public class Maze implements Cloneable, Comparator<Maze> {
                 isGameFull = playersNumber == 4;
             }
         }
+
+        @Override
+        public int hashCode() {
+            final int prime = 7;
+            int result = 1;
+            result = prime * result + ((gameId));
+            return result;
+        }
+
+        @Override
+        public boolean equals(final Object obj) {
+            if (this == obj)
+                return true;
+            if (obj == null)
+                return false;
+            if (getClass() != obj.getClass())
+                return false;
+            final GameInfo other = (GameInfo) obj;
+            if (gameInfo == null) {
+                    return false;
+            } else return gameId==other.gameId;
+        }
+
+
     }
     //TODO: here u need to implement the hasCode method
 }

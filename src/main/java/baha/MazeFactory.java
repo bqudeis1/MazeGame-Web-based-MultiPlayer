@@ -140,10 +140,10 @@ public class MazeFactory {
     chests.setMapSites(ch4,4);
     ch0.addItem(keys0);
 
-    myMaze.addRoom(chests);
+    //myMaze.addRoom(chests);
     myMaze.addRoom(mirrors);
-    myMaze.addRoom(walls);
-    myMaze.addRoom(paintings);
+    //myMaze.addRoom(walls);
+    //myMaze.addRoom(paintings);
 
 
 
