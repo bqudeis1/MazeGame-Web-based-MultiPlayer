@@ -17,47 +17,48 @@
     <source src="media/gameplay theme.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
-<h1><%= "Hello World!" %>
+<h1><%= "World Navigation Game!" %>
 </h1>
 <br/>
 <div>
-    <form>
-
-        <input type="button" onclick="viewPlayerCommands();" value="Navigation commands" id="Navigation commands">
-        <input type="button" onclick="viewTradeCommands();" value="trade commands" id="Trade">
-        <br>
+    <form class="">
+        <input type="button" class="headButton BN" onclick="viewNavigationCommands();" value="Navigation commands" id="Navigation commands">
         <input type="button" title="TurnLeftCommand" value="turn left" id="TurnLeftCommand" hidden >
         <input type="button" title="TurnRightCommand" value="turn right" id="TurnRightCommand" hidden >
         <input type="button" title="ForwardCommand" value="move forward" id="ForwardCommand" hidden >
         <input type="button" title="BackwardCommand" value="move backward" id="BackwardCommand" hidden >
         <input type="button" title="PlayerStatusCommand" value="player status" id="PlayerStatusCommand" hidden >
-        <input type="button" title="LookCommand" value="look" id="LookCommand" hidden >
-        <input type="button" title="OpenCommand" value="open" id="OpenCommand" hidden >
-        <input type="button" title="CloseCommand" value="close" id="CloseCommand" hidden >
-        <input type="button" title="CheckCommand" value="check" id="CheckCommand" hidden >
-        <input type="button" title="HelpCommand" value="help" id="HelpCommand" hidden >
-        <input type="button" title="SwitchLightCommand" value="switchLight" id="SwitchLightCommand" hidden >
-        <input type="button" title="UseFlashLightCommand" value="use flash Light" id="UseFlashLightCommand" hidden >
-        <input type="button" title="UseKeyCommand" value="use key" id="UseKeyCommand" hidden >
+    </form>
+    <form>
+        <input type="button" class="headButton" onclick="viewTradeCommands();" value="trade commands" id="Trade">
         <input type="button" title="SellCommand" value="sell items" id="SellCommand" hidden >
         <input type="button" title="BuyCommand" value="buy items" id="BuyCommand" hidden >
         <input type="button" title="ListCommand" value="list seller items" id="ListCommand" hidden >
         <input type="button" onclick="viewTradeCommands();" title="FinishTrade" value="quit trade" id="FinishTrade" hidden >
     </form>
+    <form class="formPlayerPos">
+        <input type="label" class="headButton playerCommands"  value="player commands" id="player commands" disabled="disabled">
+        <br/>
+        <input type="button" class="BP" title="LookCommand" value="look" id="LookCommand" hidden >
+        <input type="button" class="BP" title="OpenCommand" value="open" id="OpenCommand" hidden >
+        <input type="button" class="BP" title="CloseCommand" value="close" id="CloseCommand" hidden >
+        <input type="button" class="BP" title="CheckCommand" value="check" id="CheckCommand" hidden >
+        <input type="button" class="BP" title="HelpCommand" value="help" id="HelpCommand" hidden >
+        <input type="button" class="BP" title="SwitchLightCommand" value="switch light" id="SwitchLightCommand" hidden >
+        <input type="button" class="BP" title="UseFlashLightCommand" value="use flash Light" id="UseFlashLightCommand" hidden >
+        <input type="button" class="BP" title="UseKeyCommand" value="use key" id="UseKeyCommand" hidden >
+    </form>
 </div>
 <h5>Console</h5>
 <div title="Console" class="console-text">
-    <textarea class="textarea" id="console" name="console" rows="6"  >
+    <textarea class="textarea" id="console" name="console"  placeholder="console output"  >
     Player-><%=player.toString()+".\n"+"Player->"%>
 </textarea>
 </div>
 <!-- try making textarea a console -->
 
 <!-- end of the console test -->
-<input type="button" value="Show Server Time"
-       onclick='ajaxAsyncRequest("/WNA_MazeGame_Online_war_exploded/hello-servlet")'/>
 
-<a href="hello-servlet">Hello Servlet</a>
 </body>
 <script src="javaS.js"></script>
 <script src="jquery-3.5.1.min.js"></script>

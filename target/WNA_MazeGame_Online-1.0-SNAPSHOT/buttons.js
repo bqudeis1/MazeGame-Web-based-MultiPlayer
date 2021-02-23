@@ -1,6 +1,6 @@
-function viewPlayerCommands(){
-    var myElement=document.getElementById("TurnLeftCommand");
-    toggle(myElement);
+function viewNavigationCommands(){
+	var myElement=document.getElementById("TurnLeftCommand");
+	toggle(myElement);
 	myElement=document.getElementById("TurnRightCommand");
 	toggle(myElement);
 	myElement=document.getElementById("ForwardCommand");
@@ -9,22 +9,6 @@ function viewPlayerCommands(){
 	toggle(myElement);
 	myElement=document.getElementById("PlayerStatusCommand");
 	toggle(myElement);
-	myElement=document.getElementById("LookCommand");
-	hide(myElement);
-	myElement=document.getElementById("OpenCommand");
-	hide(myElement);
-	myElement=document.getElementById("CloseCommand");
-	hide(myElement);
-	myElement=document.getElementById("CheckCommand");
-	hide(myElement);
-	myElement=document.getElementById("HelpCommand");
-	hide(myElement);
-	myElement=document.getElementById("SwitchLightCommand");
-	hide(myElement);
-	myElement=document.getElementById("UseFlashLightCommand");
-	hide(myElement);
-	myElement=document.getElementById("UseKeyCommand");
-	hide(myElement);
 	myElement=document.getElementById("SellCommand");
 	hide(myElement);
 	myElement=document.getElementById("BuyCommand");
@@ -36,17 +20,17 @@ function viewPlayerCommands(){
 }
 function toggle(myElement){
 	if (myElement.style.display === "none") {
-        myElement.style.display = "block";
-    } else {
-        myElement.style.display = "none";
-    }
+		myElement.style.display = "block";
+	} else {
+		myElement.style.display = "none";
+	}
 }
 function hide(myElement){
 	myElement.style.display = "none";
 }
 function viewTradeCommands(){
-    var myElement=document.getElementById("TurnLeftCommand");
-    hide(myElement);
+	var myElement=document.getElementById("TurnLeftCommand");
+	hide(myElement);
 	myElement=document.getElementById("TurnRightCommand");
 	hide(myElement);
 	myElement=document.getElementById("ForwardCommand");
@@ -54,22 +38,6 @@ function viewTradeCommands(){
 	myElement=document.getElementById("BackwardCommand");
 	hide(myElement);
 	myElement=document.getElementById("PlayerStatusCommand");
-	hide(myElement);
-	myElement=document.getElementById("LookCommand");
-	hide(myElement);
-	myElement=document.getElementById("OpenCommand");
-	hide(myElement);
-	myElement=document.getElementById("CloseCommand");
-	hide(myElement);
-	myElement=document.getElementById("CheckCommand");
-	hide(myElement);
-	myElement=document.getElementById("HelpCommand");
-	hide(myElement);
-	myElement=document.getElementById("SwitchLightCommand");
-	hide(myElement);
-	myElement=document.getElementById("UseFlashLightCommand");
-	hide(myElement);
-	myElement=document.getElementById("UseKeyCommand");
 	hide(myElement);
 	myElement=document.getElementById("SellCommand");
 	toggle(myElement);
@@ -79,4 +47,7 @@ function viewTradeCommands(){
 	toggle(myElement);
 	myElement=document.getElementById("FinishTrade");
 	toggle(myElement);
+}
+function viewPlayerCommands(){
+
 }
