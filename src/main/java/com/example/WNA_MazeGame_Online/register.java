@@ -40,34 +40,6 @@ public class register extends HttpServlet {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         String playerName = request.getParameter("name");
         Player player = null;
 
@@ -95,7 +67,7 @@ public class register extends HttpServlet {
             response.addCookie(playerId);
             response.addCookie(gameId);
             request.setAttribute("player", player);
-            RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("root.jsp");
             view.forward(request, response);
         }
     }

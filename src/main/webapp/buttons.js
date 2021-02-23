@@ -9,14 +9,8 @@ function viewNavigationCommands(){
 	toggle(myElement);
 	myElement=document.getElementById("PlayerStatusCommand");
 	toggle(myElement);
-	myElement=document.getElementById("SellCommand");
-	hide(myElement);
-	myElement=document.getElementById("BuyCommand");
-	hide(myElement);
-	myElement=document.getElementById("ListCommand");
-	hide(myElement);
-	myElement=document.getElementById("FinishTrade");
-	hide(myElement);
+
+
 }
 function toggle(myElement){
 	if (myElement.style.display === "none") {
@@ -29,17 +23,9 @@ function hide(myElement){
 	myElement.style.display = "none";
 }
 function viewTradeCommands(){
-	var myElement=document.getElementById("TurnLeftCommand");
-	hide(myElement);
-	myElement=document.getElementById("TurnRightCommand");
-	hide(myElement);
-	myElement=document.getElementById("ForwardCommand");
-	hide(myElement);
-	myElement=document.getElementById("BackwardCommand");
-	hide(myElement);
-	myElement=document.getElementById("PlayerStatusCommand");
-	hide(myElement);
-	myElement=document.getElementById("SellCommand");
+
+
+	var myElement=document.getElementById("SellCommand");
 	toggle(myElement);
 	myElement=document.getElementById("BuyCommand");
 	toggle(myElement);
@@ -48,6 +34,9 @@ function viewTradeCommands(){
 	myElement=document.getElementById("FinishTrade");
 	toggle(myElement);
 }
-function viewPlayerCommands(){
+function chBox(){
+	viewTradeCommands();
+	var chBox=document.getElementById("chBox");
+	chBox.checked="checked";
 
 }
