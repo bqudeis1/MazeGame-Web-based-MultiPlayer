@@ -1,6 +1,5 @@
 package timer;
 
-import gameContext.GameStatus;
 
 public class RunnableTimer implements Runnable {
     private final GameTimer time = GameTimer.getInstance();

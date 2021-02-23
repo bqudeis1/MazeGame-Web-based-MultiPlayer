@@ -19,5 +19,3 @@ $(function () {
         }
     });
 });
-
-$(document).ready(alert('You pressed enter!'));

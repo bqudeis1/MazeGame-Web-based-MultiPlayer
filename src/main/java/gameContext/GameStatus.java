@@ -6,10 +6,21 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class GameStatus implements Observer {
-    private GameTimer gameTimerObservable;
-    private long gameStartingTime;
-    private long waitingTime = 60;
-    private long gameDuration = 20*60;//in sec
+
+    private transient GameTimer gameTimerObservable;
+
+    private transient long gameStartingTime;
+    private long waitingTime = 10;//rewrite it to 60 sec.
+    private long gameDuration = 15;//in sec
+    boolean isGameStart;
+    boolean isGameInWaitingMod;
+    private boolean isGameFinished;
+    private String GameResult;
+
+    public long getWaitingTime() {
+        return waitingTime;
+    }
+
 
     public boolean isGameStart() {
         return isGameStart;
@@ -31,9 +42,7 @@ public class GameStatus implements Observer {
         isGameFinished = gameFinished;
     }
 
-    boolean isGameStart;
-    boolean isGameInWaitingMod;
-    private boolean isGameFinished;
+
     public GameStatus(Observable observable) {
         this.gameTimerObservable = (GameTimer) observable;
         observable.addObserver(this);
@@ -48,14 +57,20 @@ public class GameStatus implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        long temp = gameTimerObservable.getTime() - gameStartingTime;
-        if (temp >= waitingTime) {
-            isGameStart = true;
-            isGameInWaitingMod = false;
+        if (waitingTime > 0) {
+            waitingTime--;
+            if (waitingTime == 0) {
+                setGameInWaitingMod(false);
+                setGameStart(true);
+            }
         }
-        if (temp >= gameDuration) {
-            isGameFinished = true;
-            gameTimerObservable.deleteObserver(this);
+        if (isGameStart) {
+            gameDuration--;
+            if (gameDuration == 0) {
+                setGameFinished(true);
+                o.deleteObserver(this);
+                GameResult="Time Over No Winner";
+            }
         }
     }
 }
