@@ -7,12 +7,13 @@ import items.Gold;
 import items.Item;
 
 import java.util.List;
+
 @JsonDeserialize(as = Seller.class)
 public class Seller extends Container implements MapSite {
     private Gold gold;
 
     public Seller() {
-
+        this.gold = new Gold(100);
     }
 
     public Gold getGold() {
@@ -20,11 +21,11 @@ public class Seller extends Container implements MapSite {
     }
 
     public void decreaseSellerGold(Gold gold) {
-        gold.decreaseGold(gold);
+        this.gold.decreaseGold(gold);
     }
 
     public void increaseSellerGold(Gold gold) {
-        gold.increaseGold(gold);
+        this.gold.increaseGold(gold);
     }
 
     @Override
@@ -44,11 +45,22 @@ public class Seller extends Container implements MapSite {
         return "seller can't be checked";
     }
 
+    public String getItemsName() {
+        if (!isEmpty()) {
+            StringBuilder itemsName = new StringBuilder("Trader Items:  ");
+            for (Item item : itemsContainer) {
+                itemsName.append("\n").append(item.getName()).append("  PRICE: " + item.getPrice()).append(" Coins.");
+            }
+            return itemsName.toString();
+        }
+        return "Trader does not have any item to sell " + getClass().getSimpleName();
+    }
+
     @Override
     public String toString() {
-        String sellerInfo="";
-        for(Item item : itemsContainer) {
-            sellerInfo="this seller have "+item.getName()+" for "+item.getPrice().getAmount()+" golds.\n";
+        String sellerInfo = "";
+        for (Item item : itemsContainer) {
+            sellerInfo = "this seller have " + item.getName() + " for " + item.getPrice().getAmount() + " golds.\n";
         }
         return sellerInfo;
     }

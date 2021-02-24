@@ -8,11 +8,10 @@
 <head>
     <link rel="stylesheet" href="rootStyle.css">
     <link rel="stylesheet" href="checkBoxstyle.css">
-    <title>JSP - Hello World</title>
-    <link rel="shortcut icon" href="#">
+    <title>Maze Game Online</title>
 </head>
 <body id="particles-js">
-<script type="text/javascript" src="console.js"></script>
+<script type="text/javascript"></script>
 <audio controls autoplay hidden="hidden" loop="loop">
     <source src="media/gameplay theme.ogg" type="audio/ogg">
     <source src="media/gameplay theme.mp3" type="audio/mpeg">

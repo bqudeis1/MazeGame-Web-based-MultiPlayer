@@ -19,12 +19,12 @@ public class SellCommand implements Command<String, String> {
     public String execute(String... input) {
         Objects.requireNonNull(input);
         Seller seller = (Seller) player.getFacingObject();
-        String itemName = input[0].replaceFirst("buy", "");
+        String itemName = input[0];
         if (player.containItemName(itemName)) {
-            Item itemToSell = player.getAndRemove(itemName);//what if there is not gold to buy or sell?!!! the item will delete from here ?!!!?
+            Item itemToSell = player.get(itemName);//what if there is not gold to buy or sell?!!! the item will delete from here ?!!!?
             Gold gold = itemToSell.getPrice();
             if (doseSellerHaveMoneyToBuy(gold,seller)) {//TODO function name change.
-                seller.addItem(itemToSell);
+                seller.addItem(player.getAndRemove(itemName));
                 seller.decreaseSellerGold(itemToSell.getPrice());
                 player.increasePlayerGold(itemToSell.getPrice());
                 return "You just Sell " + itemName + ".";

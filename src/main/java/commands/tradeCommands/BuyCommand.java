@@ -18,15 +18,14 @@ public class BuyCommand implements Command<String, String> {
     @Override
     public String execute(String... input) {
         Objects.requireNonNull(input);
-        Seller sellerContainer = (Seller) player.getFacingObject();
-        String itemName = input[0].replaceFirst("buy", "");
-        if (sellerContainer.containItemName(itemName)) {
-            Item itemToSell = sellerContainer.getAndRemove(itemName);
+        Seller seller = (Seller) player.getFacingObject();
+        String itemName = input[0];
+        if (seller.containItemName(itemName)) {
+            Item itemToSell = seller.get(itemName);
             Gold gold = itemToSell.getPrice();
             if (dosePlayerHaveMoneyToBuy(gold)) {//TODO: function name change.
-                player.addItem(itemToSell);
-
-                sellerContainer.increaseSellerGold(itemToSell.getPrice());
+                player.addItem(seller.getAndRemove(itemName));
+                seller.increaseSellerGold(itemToSell.getPrice());
                 player.decreasePlayerGold(itemToSell.getPrice());
                 return "You just buy " + itemName + ".";
             }
@@ -36,6 +35,6 @@ public class BuyCommand implements Command<String, String> {
     }
 
     private boolean dosePlayerHaveMoneyToBuy(Gold gold) {
-        return player.getGoldAmount().compareTo(gold) <= 0;
+        return player.getGoldAmount().compareTo(gold) >= 0;
     }
 }

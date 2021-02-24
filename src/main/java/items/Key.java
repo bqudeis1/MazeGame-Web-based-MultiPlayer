@@ -28,6 +28,6 @@ public class Key implements Item {
 
   @Override
   public String toString() {
-    return name + " Key" + "   " + price.toString();
+    return name + " Key," + " key price: " + price.toString();
   }
 }

@@ -25,6 +25,10 @@ public class Room implements MapSite, Observer {
         return winningRoomsIds.contains(roomNo);
     }
 
+    public void setSwitchLightExists(boolean switchLightExists) {
+        this.switchLightExists = switchLightExists;
+    }
+
     public String getName() {
         return name;
     }

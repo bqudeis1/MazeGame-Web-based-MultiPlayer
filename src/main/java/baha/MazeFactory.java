@@ -61,7 +61,8 @@ public class MazeFactory {
     HashMap<String, Key> keys=new HashMap<>();
     Map1ItemsCreator.createItems(keys);
     //set rooms properties
-
+    rooms.get(9).setLightsOn(true);
+    rooms.get(9).setSwitchLightExists(true);
 
     // win rooms 5,6,12,19
     Room.winningRoomsIds.add(5);

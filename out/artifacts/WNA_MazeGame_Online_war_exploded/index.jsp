@@ -30,7 +30,7 @@
             <form method="post" action="register">
 
 
-                <input class="" type="text" placeholder="Enter your name here" name="name" style="position: sticky">
+                <input class="" type="text" value="AAAA" placeholder="Enter your name here" name="name" style="position: sticky">
 
                 <br>
                 <input type="radio" onclick="hide();" id="CreateGame" name="joinGameRequest" value="createGame">

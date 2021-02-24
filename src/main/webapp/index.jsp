@@ -25,13 +25,8 @@
     <%--align="center"--%>
     <div class="row">
         <div class="col-sm" style="margin: 200px 0 0 25%; max-width: 50%">
-
-
             <form method="post" action="register">
-
-
-                <input class="" type="text" placeholder="Enter your name here" name="name" style="position: sticky">
-
+                <input class="" type="text"  placeholder="Enter your name here" name="name" style="position: sticky">
                 <br>
                 <input type="radio" onclick="hide();" id="CreateGame" name="joinGameRequest" value="createGame">
                 <label for="CreateGame" class="form-check-label">Create Game</label>

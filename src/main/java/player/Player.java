@@ -188,11 +188,11 @@ public class Player extends Observable implements Observer, Comparator<Player>, 
     }
 
     public void decreasePlayerGold(Gold gold) {
-        gold.decreaseGold(gold);
+        this.goldAmount.decreaseGold(gold);
     }
 
     public void increasePlayerGold(Gold gold) {
-        gold.increaseGold(gold);
+        this.goldAmount.increaseGold(gold);
     }
 
     private void setDirectionToInt() {
@@ -205,6 +205,7 @@ public class Player extends Observable implements Observer, Comparator<Player>, 
             if (item.getName().equals(itemName))
                 retItem = item;
         }
+        playerItems.remove(retItem);
         return retItem;
     }
 
@@ -224,10 +225,10 @@ public class Player extends Observable implements Observer, Comparator<Player>, 
     @Override
     public String toString() {
         return
-                "name: " + name + "\n" +
-                        "playerItems=" + playerItems + "\n" +
-                        "direction: " + direction +
-                        "goldAmount: " + goldAmount +
+                "Player Name: " + name + "\n" +
+                        "Player Items=" + playerItems + "\n" +
+                        "Direction: " + direction +
+                        "Gold Amount: " + goldAmount +
                         ", GameCode \"" + gameId + "\"" +
                           "\n" + currentRoom.RoomInfo();
     }
