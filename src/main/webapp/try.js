@@ -1,23 +1,50 @@
-$(function () {
-    $("#console").on('keypress', function (e) {
-        const playerWord = "Player->";
-        debugger;
-        const code = (e.keyCode ? e.keyCode : e.which);
-        if (code === 13) {
-            const textAreaContent = $('#console').val();
-            const messageToServer = textAreaContent.substr(textAreaContent.lastIndexOf(playerWord) + playerWord.length).trim();
-            $.post("/WNA_MazeGame_Online_war_exploded/CommandExecutorServlet",
-                {
-                    command: messageToServer,
-                },
-                function (data, status) {
-                    $('#console').val($('#console').val() +"\n"+ data + "\n");
-                    alert("Dataa: " + data + "\nStatus: " + status);
-                });
-            return true;
-        }
-    });
-});
+function sender(e) {
+
+    const playerWord = "Player->";
+    debugger;
+    const code = (e.keyCode ? e.keyCode : e.which);
+    if (code === 13) {
+
+
+        const messageToServer = textAreaContent.substr(textAreaContent.lastIndexOf(playerWord) + playerWord.length).trim();
+        $.post("/WNA_MazeGame_Online_war_exploded/CommandExecutorServlet",
+            {
+                command: messageToServer,
+            },
+            function (data, status) {
+                $('#console').val($('#console').val() + "\n" + data + "\n");
+                alert("Dataa: " + data + "\nStatus: " + status);
+            });
+        return true;
+    }
+
+
+}
+
+function sender_click(val) {
+    {
+        messageToServer = val
+        $.post("/WNA_MazeGame_Online_war_exploded/CommandExecutorServlet",
+            {
+                command: messageToServer,
+            },
+            function (data, status) {
+                $('#console').val($('#console').val() + "\n" + data + "\n");
+                alert("Dataa: " + data + "\nStatus: " + status);
+            });
+        return true;
+    }
+
+
+}
+
+$("#console").on('keypress', function (e) {
+    sender(e)
+})
+$("#LookCommand, #OpenCommand, #CloseCommand, #CheckCommand, #HelpCommand, #SwitchLightCommand, #UseFlashLightCommand, #UseKeyCommand ,#TurnLeftCommand").on('click', function (e) {
+    sender_click($(this).val())
+})
+
 let timeInterval = 300;
 var gameStart = setInterval(gameStart, timeInterval);
 var gameFinished;
@@ -51,10 +78,17 @@ function gameFinished() {
         success: function (result) {
 
             if (result.isGameFinished === true) {
-                $('#console').val("\n Game Over bitch." );
+                $('#console').val("\n Game Over .");
                 clearInterval(gameFinished);
             }
         },
     });
 }
+
+//
+// $("#LookCommand").click((e)=>{
+//     alert($(this).val())
+//
+//
+// })
 

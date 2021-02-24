@@ -25,7 +25,7 @@ var gameFinished;
 
 function gameStart() {
     $.ajax({
-        url: "/WNA_MazeGame_Online_war_exploded/Servleto",
+        url: "/WNA_MazeGame_Online_war_exploded/Servlet",
         contentType: "application/json; charset=utf-8",
         type: "GET",
         dataType: "json", //Specify response type from server
@@ -44,7 +44,7 @@ function gameStart() {
 
 function gameFinished() {
     $.ajax({
-        url: "/WNA_MazeGame_Online_war_exploded/Servleto",//remember to edit this when u deploy on ASW
+        url: "/WNA_MazeGame_Online_war_exploded/Servlet",
         contentType: "application/json; charset=utf-8",
         type: "GET",
         dataType: "json", //Specify response type from server
