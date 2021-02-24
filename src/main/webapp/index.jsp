@@ -30,7 +30,7 @@
             <form method="post" action="register">
 
 
-                <input class="" type="text" placeholder="Enter your name here" name="name" style="position: sticky">
+                <input class="" type="text" placeholder="Enter your name here" name="name" id="name" style="position: sticky" value="foo">
 
                 <br>
                 <input type="radio" onclick="hide();" id="CreateGame" name="joinGameRequest" value="createGame">
@@ -45,7 +45,7 @@
                 <div id="GameCode" style="display: none">
                     <input type="text" name="gameCode"> <br>
                 </div>
-                <button type="submit" value="Join game" onsubmit="validateForm()">Join game</button>
+                <button type="submit" value="Join game" onclick="validateForm()">Join game</button>
             </form>
         </div>
     </div>

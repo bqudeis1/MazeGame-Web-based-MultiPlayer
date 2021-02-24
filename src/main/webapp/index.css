@@ -16,18 +16,17 @@ form{
 
 }
 
-button {
-
-    margin: 10px 10px 10px 10%;
-    width: auto;
-    height: fit-content;
-    border-radius: 5px;
-    color: #ffc107;
-    font-size: 25px;
-    font-weight: 400;
-    padding: 6px;
-    background-color:#2e4247
-}
+/*button {*/
+/*    margin: 10px 10px 10px 10%;*/
+/*    width: auto;*/
+/*    height: fit-content;*/
+/*    border-radius: 5px;*/
+/*    color: #ffc107;*/
+/*    font-size: 25px;*/
+/*    font-weight: 400;*/
+/*    padding: 6px;*/
+/*    background-color:#2e4247*/
+/*}*/
 input[type=radio]{
 
     position: center;
@@ -38,20 +37,16 @@ input[type=radio]{
     width: 30px;
     height: 30px;
     font-size: 16px;
-    padding: 1px;
-
-}
+    padding: 1px;}
 
 input[type=text]{
     height:auto;
     width:max-content;
     border: 3px solid rgba(155,155,155,0.3);
     border-color: #f58807;
-    color: white;
+    color: #ffc107;
     font-size:25px;
-    padding: 1px;
-
-}
+    padding: 1px;}
 
 input,label{
     margin: 10px 10px 10px 10%;
@@ -61,6 +56,30 @@ input,label{
     color: #ffc107;
     font-size: 25px;
     font-weight: 400;
-    padding: 6px;
-}
+    padding: 6px;}
 
+.boxContainer {
+    margin-top: 10%;
+    margin-left: 40%;
+}
+.box {
+    width:400px;
+    height:400px;
+    background:#2e4247;
+    padding:2%;
+    display: table-cell;
+    text-align: center;
+    vertical-align: bottom;
+    margin-left: 50%;
+}
+button {
+    margin: 10px 10px 10px 10px;
+    width: auto;
+    height: fit-content;
+    border-radius: 5px;
+    color: #ffc107;
+    font-size: 25px;
+    font-weight: 400;
+    padding: 6px;
+    background-color:#2e4247
+}

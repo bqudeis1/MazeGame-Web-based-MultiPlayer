@@ -21,28 +21,9 @@ public class register extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        //response when the game start
-        //while (){
-        //gamePool.getGame(12).getGameStatus().isGameStart();
-        //wait(1000);
-        //}
-        //response game started
-
-        //gameFinish
-        //wait(time duration/2)
-        //response
-
-
-        //getGameStatus
-
-        //when gameStatusGange
-        //respose
-
-
-
         String playerName = request.getParameter("name");
         Player player = null;
-
+        RequestDispatcher view=null;
         if (isAcceptable(playerName)) {
             String joinGameRequest = request.getParameter("joinGameRequest");
 
@@ -67,9 +48,14 @@ public class register extends HttpServlet {
             response.addCookie(playerId);
             response.addCookie(gameId);
             request.setAttribute("player", player);
-            RequestDispatcher view = request.getRequestDispatcher("root.jsp");
-            view.forward(request, response);
+            view = request.getRequestDispatcher("root.jsp");
         }
+        else{
+            view = request.getRequestDispatcher("index.jsp");
+
+        }
+        view.forward(request, response);
+
     }
 
     private boolean isAcceptable(String playerName) {

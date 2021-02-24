@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="WNA_MazeGame_Online:war exploded002 archive">
+    <output-path>$PROJECT_DIR$/out/artifacts/WNA_MazeGame_Online_war_exploded002_archive</output-path>
+    <root id="archive" name="WNA_MazeGame_Online_war exploded002 archive.war">
+      <element id="artifact" artifact-name="WNA_MazeGame_Online:war exploded002" />
+    </root>
+  </artifact>
+</component>

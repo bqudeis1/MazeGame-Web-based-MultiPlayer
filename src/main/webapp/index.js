@@ -5,19 +5,22 @@ function myFunction() {
 }
 
 function validateForm() {
-    var x = document.getElementById("name")
-    alert(x)
-    if (x === "") {
+    // document.getElementById("myText").value
+    var x;
+    x = document.getElementById("name").value;
+    if (x === '') {
         alert("Name must be filled out");
-        return false;
+        // return false;
     }
 }
-function view(myElement){
+
+function view(myElement) {
 
     myElement.style.display = "block";
 
 }
-function hide(){
-    let myElement=document.getElementById("GameCode");
+
+function hide() {
+    let myElement = document.getElementById("GameCode");
     myElement.style.display = "none";
 }
