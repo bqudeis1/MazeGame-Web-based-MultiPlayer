@@ -41,7 +41,7 @@ function sender_click(val) {
 $("#console").on('keypress', function (e) {
     sender(e)
 })
-$("#LookCommand, #OpenCommand, #CloseCommand, #CheckCommand, #HelpCommand, #SwitchLightCommand, #UseFlashLightCommand, #UseKeyCommand ,#TurnLeftCommand").on('click', function (e) {
+$("#LookCommand, #OpenCommand, #CloseCommand, #CheckCommand, #HelpCommand, #SwitchLightCommand, #UseFlashLightCommand, #UseKeyCommand ,#TurnLeftCommand, #ForwardCommand ,#BackwardCommand,#PlayerStatusCommand, #ListCommand,#FinishTrade").on('click', function (e) {
     sender_click($(this).val())
 })
 

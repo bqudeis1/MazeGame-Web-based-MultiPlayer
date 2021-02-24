@@ -16,20 +16,6 @@
 
 <body>
 <div class="container">
-
-    <div class="boxContainer">
-
-        <div class="box">
-            <!-- <img src="winner_3.png" alt="" width="200px" height="200px" style="margin: bottom 50px; ;">
-  -->
-            <img src="game_over_PNG11.png" alt="" width="200px" height="200px" style="margin: bottom 50px; ;">
-            <br>
-            <button>play again</button>
-        </div>
-    </div>
-
-
-
     <audio controls autoplay hidden="hidden">
         <source src="media/gameTheme.ogg" type="audio/ogg">
         <source src="media/gameTheme.mp3" type="audio/mpeg">
@@ -44,7 +30,7 @@
             <form method="post" action="register">
 
 
-                <input class="" type="text" placeholder="Enter your name here" name="name" id="name" style="position: sticky">
+                <input class="" type="text" placeholder="Enter your name here" name="name" id="name" style="position: sticky" value="foo">
 
                 <br>
                 <input type="radio" onclick="hide();" id="CreateGame" name="joinGameRequest" value="createGame">

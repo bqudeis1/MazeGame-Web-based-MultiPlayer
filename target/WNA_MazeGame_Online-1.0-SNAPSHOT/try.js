@@ -41,7 +41,7 @@ function sender_click(val) {
 $("#console").on('keypress', function (e) {
     sender(e)
 })
-$("#LookCommand, #OpenCommand, #CloseCommand, #CheckCommand, #HelpCommand, #SwitchLightCommand, #UseFlashLightCommand, #UseKeyCommand ,#TurnLeftCommand").on('click', function (e) {
+$("#LookCommand, #OpenCommand, #CloseCommand, #CheckCommand, #HelpCommand, #SwitchLightCommand, #UseFlashLightCommand, #UseKeyCommand ,#TurnLeftCommand, #ForwardCommand ,#BackwardCommand,#PlayerStatusCommand, #ListCommand,#FinishTrade").on('click', function (e) {
     sender_click($(this).val())
 })
 
@@ -52,7 +52,7 @@ var gameFinished;
 
 function gameStart() {
     $.ajax({
-        url: "/WNA_MazeGame_Online_war_exploded/Servlet",
+        url: "/WNA_MazeGame_Online_war_exploded/Servleto",
         contentType: "application/json; charset=utf-8",
         type: "GET",
         dataType: "json", //Specify response type from server
@@ -71,7 +71,7 @@ function gameStart() {
 
 function gameFinished() {
     $.ajax({
-        url: "/WNA_MazeGame_Online_war_exploded/Servlet",
+        url: "/WNA_MazeGame_Online_war_exploded/Servleto",//remember to edit this when u deploy on ASW
         contentType: "application/json; charset=utf-8",
         type: "GET",
         dataType: "json", //Specify response type from server

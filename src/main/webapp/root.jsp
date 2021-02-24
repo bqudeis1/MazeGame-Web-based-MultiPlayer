@@ -23,11 +23,11 @@
 <div>
     <form class="">
         <input type="button" class="headButton BN" onclick="viewNavigationCommands();" value="Navigation commands" id="Navigation commands">
-        <input type="button" class="nav" title="TurnLeftCommand" value="turn left" id="TurnLeftCommand" hidden >
-        <input type="button" class="nav" value="turn right" id="TurnRightCommand" hidden >
-        <input type="button" class="nav" value="move forward" id="ForwardCommand" hidden >
-        <input type="button" class="nav" value="move backward" id="BackwardCommand" hidden >
-        <input type="button" class="nav" value="player status" id="PlayerStatusCommand" hidden >
+        <input type="button" class="nav" title="TurnLeftCommand" value="turnLeft" id="TurnLeftCommand" hidden >
+        <input type="button" class="nav" value="turnRight" id="TurnRightCommand" hidden >
+        <input type="button" class="nav" value="forward" id="ForwardCommand" hidden >
+        <input type="button" class="nav" value="backward" id="BackwardCommand" hidden >
+        <input type="button" class="nav" value="playerStatus" id="PlayerStatusCommand" hidden >
     </form>
     <form class="tradeForm" id="chBox">
 	<span class="switch" >
@@ -60,10 +60,10 @@
 		</span>
 	</span>
 </span>
-        <input type="button" class="trading" title="SellCommand" value="sell items" id="SellCommand" hidden >
-        <input type="button" class="trading" title="BuyCommand" value="buy items" id="BuyCommand" hidden >
-        <input type="button" class="trading" title="ListCommand" value="list seller items" id="ListCommand" hidden >
-        <input type="button" class="trading" onclick="viewTradeCommands();" title="FinishTrade" value="quit trade" id="FinishTrade" hidden >
+        <input type="button" class="trading" title="SellCommand" value="sell" id="SellCommand" hidden >
+        <input type="button" class="trading" title="BuyCommand" value="buy" id="BuyCommand" hidden >
+        <input type="button" class="trading" title="ListCommand" value="list" id="ListCommand" hidden >
+        <input type="button" class="trading" onclick="viewTradeCommands();" title="FinishTrade" value="FinishTrade" id="FinishTrade" hidden >
     </form>
     <form class="formPlayerPos">
         <input type="label" class="headButton playerCommands"  value="player commands" id="player commands" disabled="disabled">
@@ -73,9 +73,9 @@
         <input type="button" class="BP" title="CloseCommand" value="close" id="CloseCommand" hidden >
         <input type="button" class="BP" title="CheckCommand" value="check" id="CheckCommand" hidden >
         <input type="button" class="BP" title="HelpCommand" value="help" id="HelpCommand" hidden >
-        <input type="button" class="BP" title="SwitchLightCommand" value="switch light" id="SwitchLightCommand" hidden >
-        <input type="button" class="BP" title="UseFlashLightCommand" value="use flash Light" id="UseFlashLightCommand" hidden >
-        <input type="button" class="BP" title="UseKeyCommand" value="use key" id="UseKeyCommand" hidden >
+        <input type="button" class="BP" title="SwitchLightCommand" value="switchLight" id="SwitchLightCommand" hidden >
+        <input type="button" class="BP" title="UseFlashLightCommand" value="useFlashLight" id="UseFlashLightCommand" hidden >
+        <input type="button" class="BP" title="UseKeyCommand" value="useKey" id="UseKeyCommand" hidden >
     </form>
 </div>
 <div title="Console" class="console-text">
