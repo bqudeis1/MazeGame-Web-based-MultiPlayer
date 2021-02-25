@@ -33,7 +33,6 @@ public class Player extends Observable implements Observer, Comparator<Player>, 
     private static Set<Integer> playerIds = new HashSet<>();
 
 
-
     public Gold getGoldAmount() {
         return goldAmount;
     }
@@ -55,36 +54,11 @@ public class Player extends Observable implements Observer, Comparator<Player>, 
         id = generateRandomPlayerId();//generat random id
     }
 
-    public String forward() {
-        //TODO refactor this contain doublect code ordinal.
-        if (getFacingObject() instanceof Door
-                && !((Door) getFacingObject()).isLocked()) {//TODO check if door is closed
-            Door d = (Door) getFacingObject();
-            currentRoomChanged(d);
-            if (currentRoom.isWiningRoom()) {
-                setChanged();
-                notifyObservers();
-            }
-            return "you are in room " + currentRoom.getRoomNo();
-        }
-        return "there is no door or door is locked";
-        // TODO:SEND A MESSAGE TO USER IF DOOR IS LOCKED OR NO DOOR OR IF DOOR CLOSED (SEND BACK DOOR
-        // ANA FIGHT IN BACKWARD AND FORWARD
-        // STATUS)
-    }
 
     private void currentRoomChanged(Door d) {
-        if(currentRoom==d.getRoom1()){
         ExitCurrentRoom();
-        Room nextRoom = d.getRoom2();
-        currentRoom = d.getRoom2();
-        //check if player in the room here and start the fight.
+        currentRoom = (currentRoom == d.getRoom1()) ? d.getRoom2() : d.getRoom1();
         enterNewRoom();
-        }else{
-            ExitCurrentRoom();
-            Room nextRoom = d.getRoom1();
-            currentRoom = d.getRoom1();
-        }
     }
 
     private void ExitCurrentRoom() {
@@ -114,22 +88,44 @@ public class Player extends Observable implements Observer, Comparator<Player>, 
                 ((FlashLight) item).addObserver(currentRoom);
             }
         });
+        if (currentRoom.isWiningRoom()) {
+            setChanged();
+            notifyObservers();
+        }
     }
 
-    public String backward() {
-        int backwardDirectionAsInt;
-        backwardDirectionAsInt = getBackwardDirectionAsInt();
-        if (getFacingObject() instanceof Door
-                && !((Door) getFacingObject()).isLocked()) {
+    public String forward() {
+        //TODO refactor this contain doublect code ordinal.
+        if (canMoveThrough(getFacingObject())) {//TODO check if door is closed
             Door d = (Door) getFacingObject();
-            currentRoom = d.getRoom2();
-            if (currentRoom.isWiningRoom()) {
-                setChanged();
-                notifyObservers();
-            }
+            currentRoomChanged(d);
             return "you are in room " + currentRoom.getRoomNo();
         }
         return "there is no door or door is locked";
+        // TODO:SEND A MESSAGE TO USER IF DOOR IS LOCKED OR NO DOOR OR IF DOOR CLOSED (SEND BACK DOOR
+        // ANA FIGHT IN BACKWARD AND FORWARD
+        // STATUS)
+    }
+
+    public String backward() {
+        if (canMoveThrough(getObjectBehindPlayer())) {
+            Door d = (Door) getObjectBehindPlayer();
+            currentRoomChanged(d);
+            return "you are in room " + currentRoom.getRoomNo();
+        }
+        return "there is no door or door is locked";
+    }
+
+    private boolean canMoveThrough(MapSite objectBehindPlayer) {
+        return objectBehindPlayer instanceof Door
+                && !((Door) getFacingObject()).isLocked();
+    }//TODO: add check if door close return false
+
+    private MapSite getObjectBehindPlayer() {
+        return (currentDirectionAsInt+2 < 4) ?
+                currentRoom.getMapSites()[currentDirectionAsInt+2] :
+                currentRoom.getMapSites()[currentDirectionAsInt - 2];
+
     }
 
     public String look() {
@@ -230,7 +226,7 @@ public class Player extends Observable implements Observer, Comparator<Player>, 
                         "Direction: " + direction +
                         "Gold Amount: " + goldAmount +
                         ", GameCode \"" + gameId + "\"" +
-                          "\n" + currentRoom.RoomInfo();
+                        "\n" + currentRoom.RoomInfo();
     }
 
     @Override
